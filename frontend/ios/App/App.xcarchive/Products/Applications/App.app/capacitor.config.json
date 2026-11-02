@@ -1,0 +1,30 @@
+{
+	"appId": "com.nextignition.app",
+	"appName": "NextIgnition",
+	"webDir": "build",
+	"server": {
+		"cleartext": true,
+		"androidScheme": "https",
+		"hostname": "nextignition.com"
+	},
+	"plugins": {
+		"GoogleAuth": {
+			"scopes": [
+				"profile",
+				"email"
+			],
+			"serverClientId": "236345953761-fiqum6k0vbauebhiinr4dvci0c37jd4o.apps.googleusercontent.com",
+			"forceCodeForRefreshToken": true
+		}
+	},
+	"packageClassList": [
+		"CAPCameraPlugin",
+		"DevicePlugin",
+		"GeolocationPlugin",
+		"LocalNotificationsPlugin",
+		"CAPNetworkPlugin",
+		"PreferencesPlugin",
+		"PushNotificationsPlugin",
+		"GoogleAuth"
+	]
+}

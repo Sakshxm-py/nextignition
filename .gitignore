@@ -1,0 +1,41 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Environment
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.production
+# Any env file/backup anywhere — these hold real secrets and must never be committed
+*.env
+*.env.bak
+.env.bak
+nextignition*.env
+
+# Build
+dist/
+build/
+.vite/
+.vercel
+
+# Logs
+*.log
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+docs/debug/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Other
+**/uploads/
+.idea/
+.claude/

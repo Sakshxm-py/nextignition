@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- Method: app-store-connect is required for App Store submission -->
+    <key>method</key>
+    <string>app-store-connect</string>
+
+    <!-- Your Apple Developer Team ID (from your certificate) -->
+    <key>teamID</key>
+    <string>7DMASV72XK</string>
+
+    <!-- Upload to App Store Connect after export -->
+    <key>destination</key>
+    <string>upload</string>
+
+    <!-- Let Xcode auto-manage provisioning profiles -->
+    <key>signingStyle</key>
+    <string>automatic</string>
+
+    <!-- Allow Xcode to update provisioning during export -->
+    <key>allowProvisioningUpdates</key>
+    <true/>
+
+    <!-- Strip bitcode (Apple deprecated it, keep false) -->
+    <key>stripSwiftSymbols</key>
+    <true/>
+
+    <!-- Compile bitcode (disabled, deprecated in modern Xcode) -->
+    <key>compileBitcode</key>
+    <false/>
+</dict>
+</plist>

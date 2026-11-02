@@ -1,0 +1,33 @@
+diff --git a/node_modules/@capacitor-community/apple-sign-in/.swiftpm/xcode/xcuserdata/atharvalepse.xcuserdatad/xcschemes/xcschememanagement.plist b/node_modules/@capacitor-community/apple-sign-in/.swiftpm/xcode/xcuserdata/atharvalepse.xcuserdatad/xcschemes/xcschememanagement.plist
+new file mode 100644
+index 0000000..b7364ba
+--- /dev/null
++++ b/node_modules/@capacitor-community/apple-sign-in/.swiftpm/xcode/xcuserdata/atharvalepse.xcuserdatad/xcschemes/xcschememanagement.plist
+@@ -0,0 +1,14 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
++<plist version="1.0">
++<dict>
++	<key>SchemeUserState</key>
++	<dict>
++		<key>CapacitorCommunityAppleSignIn.xcscheme_^#shared#^_</key>
++		<dict>
++			<key>orderHint</key>
++			<integer>4</integer>
++		</dict>
++	</dict>
++</dict>
++</plist>
+diff --git a/node_modules/@capacitor-community/apple-sign-in/Package.swift b/node_modules/@capacitor-community/apple-sign-in/Package.swift
+index 94246df..7d9d007 100644
+--- a/node_modules/@capacitor-community/apple-sign-in/Package.swift
++++ b/node_modules/@capacitor-community/apple-sign-in/Package.swift
+@@ -10,7 +10,7 @@ let package = Package(
+             targets: ["SignInWithApple"])
+     ],
+     dependencies: [
+-        .package(url: "https://github.com/ionic-team/capacitor-swift-pm.git", from: "7.0.0")
++        .package(url: "https://github.com/ionic-team/capacitor-swift-pm.git", from: "8.0.0")
+     ],
+     targets: [
+         .target(

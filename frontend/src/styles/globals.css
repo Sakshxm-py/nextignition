@@ -1,0 +1,473 @@
+@import url('https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+/* Tailwind Typography — required for the `prose` classes used to render AI
+ * (Ignisha) markdown answers and other markdown content. Without this plugin
+ * registered, every `prose` class generates nothing and v4's preflight strips
+ * list bullets / heading sizes, so markdown answers render as unstructured
+ * walls of text. */
+@plugin "@tailwindcss/typography";
+
+:root {
+  --font-size: 16px;
+  --background: #ffffff;
+  --foreground: #1a1a1a;
+  --card: #ffffff;
+  --card-foreground: #1a1a1a;
+  --popover: #ffffff;
+  --popover-foreground: #1a1a1a;
+  --primary: #030213;
+  --primary-foreground: #ffffff;
+  --secondary: #f2f2f7;
+  --secondary-foreground: #030213;
+  --muted: #ececf0;
+  --muted-foreground: #717182;
+  --accent: #e9ebef;
+  --accent-foreground: #030213;
+  --destructive: #d4183d;
+  --destructive-foreground: #ffffff;
+  --border: rgba(0, 0, 0, 0.1);
+  --input: transparent;
+  --input-background: #f3f3f5;
+  --switch-background: #cbced4;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: #b3b3b3;
+  --chart-1: #f06292;
+  --chart-2: #4db6ac;
+  --chart-3: #3949ab;
+  --chart-4: #ffca28;
+  --chart-5: #ff8a65;
+  --radius: 0.625rem;
+  --sidebar: #fafafa;
+  --sidebar-foreground: #1a1a1a;
+  --sidebar-primary: #030213;
+  --sidebar-primary-foreground: #fafafa;
+  --sidebar-accent: #f5f5f5;
+  --sidebar-accent-foreground: #333333;
+  --sidebar-border: #ebebeb;
+  --sidebar-ring: #b3b3b3;
+  --dc-bg-server: #ffffff;
+  --dc-bg-sidebar: #ffffff;
+  --dc-bg-chat: #ffffff;
+  --dc-bg-input: #f1f3f5;
+  --dc-bg-userpanel: #ffffff;
+  --dc-border: rgba(0, 0, 0, 0.08);
+  --dc-text-muted: #616161;
+  --dc-text-normal: #212121;
+  --dc-text-header: #000000;
+  --dc-indigo: #5865f2;
+  --dc-green: #23a55a;
+  --dc-red: #f23f43;
+
+  /* Tailwind 4 variables mapped to standard CSS variables */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+.dark {
+  --background: #1a1a1a;
+  --foreground: #fafafa;
+  --card: #1a1a1a;
+  --card-foreground: #fafafa;
+  --popover: #1a1a1a;
+  --popover-foreground: #fafafa;
+  --primary: #fafafa;
+  --primary-foreground: #333333;
+  --secondary: #444444;
+  --secondary-foreground: #fafafa;
+  --muted: #444444;
+  --muted-foreground: #b3b3b3;
+  --accent: #444444;
+  --accent-foreground: #fafafa;
+  --destructive: #d4183d;
+  --destructive-foreground: #ffaaaa;
+  --border: #444444;
+  --input: #444444;
+  --ring: #777777;
+  --chart-1: #3b82f6;
+  --chart-2: #10b981;
+  --chart-3: #f59e0b;
+  --chart-4: #8b5cf6;
+  --chart-5: #ec4899;
+  --sidebar: #333333;
+  --sidebar-foreground: #fafafa;
+  --sidebar-primary: #3b82f6;
+  --sidebar-primary-foreground: #fafafa;
+  --sidebar-accent: #444444;
+  --sidebar-accent-foreground: #fafafa;
+  --sidebar-border: #444444;
+  --sidebar-ring: #777777;
+}
+
+/* Register the CSS variables above as Tailwind theme tokens so utilities like
+   bg-primary, border-border, text-muted-foreground, and the dc-* set actually
+   generate. `inline` keeps the var() reference in the output so .dark overrides
+   still apply. (Previously these lived only in :root, so the utilities were
+   never emitted — which is why a frozen index.css "snapshot" was committed.) */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Discord-style communities theme tokens (used as bg-dc-*, text-dc-*, border-dc-*) */
+  --color-dc-bg-server: var(--dc-bg-server);
+  --color-dc-bg-sidebar: var(--dc-bg-sidebar);
+  --color-dc-bg-chat: var(--dc-bg-chat);
+  --color-dc-bg-input: var(--dc-bg-input);
+  --color-dc-bg-userpanel: var(--dc-bg-userpanel);
+  --color-dc-border: var(--dc-border);
+  --color-dc-text-muted: var(--dc-text-muted);
+  --color-dc-text-normal: var(--dc-text-normal);
+  --color-dc-text-header: var(--dc-text-header);
+  --color-dc-indigo: var(--dc-indigo);
+  --color-dc-green: var(--dc-green);
+  --color-dc-red: var(--dc-red);
+}
+
+/* Bare dc-* surface classes (used directly as class names, not bg-/text- prefixed) */
+@layer utilities {
+  .dc-bg-server { background-color: var(--dc-bg-server); }
+  .dc-bg-sidebar { background-color: var(--dc-bg-sidebar); }
+  .dc-bg-chat { background-color: var(--dc-bg-chat); }
+  .dc-bg-input { background-color: var(--dc-bg-input); }
+  .dc-bg-userpanel { background-color: var(--dc-bg-userpanel); }
+  .dc-border { border-color: var(--dc-border); }
+  .dc-border-sidebar { border-color: var(--dc-border); }
+}
+
+html {
+  position: relative;
+  font-size: var(--font-size);
+  scroll-behavior: smooth;
+  max-width: 100vw;
+  width: 100%;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  position: relative;
+  background-color: var(--background);
+  color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Funnel Display', sans-serif;
+}
+
+/* Base styles without @apply to avoid IDE warnings */
+@layer base {
+  * {
+    border-color: var(--border);
+    outline-color: var(--ring);
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* AI / markdown responses: render code blocks light (white background, dark
+   text) instead of Tailwind Typography's dark default. Unlayered so it wins
+   over the plugin's low-specificity :where() rules across every .prose surface
+   (Ignisha chat, summarizers, analysis, portfolio, etc.). */
+.prose pre {
+  background-color: #ffffff;
+  color: #111827;
+  border: 1px solid #e5e7eb;
+}
+.prose pre code {
+  color: inherit;
+  background-color: transparent;
+}
+
+/**
+ * Base typography. This is not applied to elements which have an ancestor with a Tailwind text class.
+ */
+@layer base {
+  :where(:not(:has([class*=' text-']), :not(:has([class^='text-'])))) {
+    h1 {
+      font-size: clamp(2rem, 8vw, 4rem);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-size: clamp(1.75rem, 6vw, 3rem);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    h3 {
+      font-size: clamp(1.5rem, 4vw, 2.25rem);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.3;
+    }
+
+    h4 {
+      font-size: clamp(1.125rem, 2vw, 1.25rem);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    label {
+      font-size: 0.875rem;
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    button {
+      font-size: 0.875rem;
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    input {
+      font-size: 1rem;
+      font-weight: var(--font-weight-normal);
+      line-height: 1.5;
+    }
+    
+    p {
+      font-size: clamp(0.875rem, 2vw, 1rem);
+      line-height: 1.6;
+      color: var(--dc-text-muted);
+    }
+  }
+}
+
+/* Global scrollbar hiding for all elements */
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* Utility class to hide scrollbar */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Safe area for mobile devices with notches */
+.safe-top {
+  padding-top: env(safe-area-inset-top);
+}
+
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Reserve space for the fixed mobile bottom nav (nav height + device safe area)
+   so page content / buttons are never hidden behind it. Use on scroll wrappers. */
+:root {
+  --mobile-nav-h: 4rem;
+}
+.pb-mobile-nav {
+  padding-bottom: calc(var(--mobile-nav-h) + env(safe-area-inset-bottom));
+}
+@media (min-width: 1024px) {
+  .pb-mobile-nav { padding-bottom: 0; }
+}
+
+/* Global utility to prevent overlap on modern iPhones */
+html, body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Global Safe Area Utility - apply this to main screen wrappers */
+.safe-area-inset {
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+.safe-area-top {
+  padding-top: env(safe-area-inset-top);
+}
+
+/* Automatically adjust sticky headers for iPhone safe areas */
+header.sticky.top-0,
+div.sticky.top-0,
+nav.sticky.top-0 {
+  padding-top: env(safe-area-inset-top);
+}
+
+/* Password fields: hide the OS/browser-injected reveal & autofill icons that
+   overlap our custom show/hide (eye) button. Covers iOS/WebKit (auto-fill key),
+   Edge/IE (ms-reveal/ms-clear) and Samsung Internet. Our custom Eye button stays. */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none;
+}
+input::-webkit-credentials-auto-fill-button,
+input::-webkit-strong-password-auto-fill-button,
+input::-webkit-strong-password-and-fill-button,
+input::-webkit-caps-lock-indicator {
+  visibility: hidden;
+  display: none !important;
+  pointer-events: none;
+  width: 0;
+  margin: 0;
+}
+
+/* Ensure interactive elements are always positioned above overlapping containers globally */
+button,
+[role="button"] {
+  position: relative;
+  z-index: 1; 
+  touch-action: manipulation;
+  cursor: pointer;
+  min-height: 44px; /* Apple's recommended minimum touch target */
+}
+
+a {
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+input:not([type="checkbox"]):not([type="radio"]), 
+select, 
+textarea {
+  position: relative;
+  touch-action: manipulation;
+  cursor: pointer;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  position: relative;
+  z-index: 50;
+  min-height: 24px;
+  min-width: 24px;
+}
+
+/* Responsive spacing utilities */
+.section-padding {
+  padding-top: clamp(3rem, 10vw, 8rem);
+  padding-bottom: clamp(3rem, 10vw, 8rem);
+}
+
+.content-container {
+  width: 100%;
+  max-width: 80rem; /* 1280px */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1rem, 5vw, 2.5rem);
+  padding-right: clamp(1rem, 5vw, 2.5rem);
+}
+
+/* Hero 3D sphere on mobile (<768px): sits behind the CTA buttons (text column is
+   z-20, sphere z-0). Size AND overlap are expressed in viewport-proportional units
+   (vw + clamp) instead of fixed px/rem, so the graphic scales with the screen and
+   looks consistent across phone models rather than different on each one. The
+   clamps are centered on a ~390px-wide reference (≈300px tall, ≈-12rem lift) and
+   bounded so it never gets too small on compact phones or too large on phablets.
+   Non-interactive so it never steals touch/scroll. (Above 768px the component's own
+   `md:` classes take over.) */
+@media (max-width: 768px) {
+  .hero-sphere-mobile-fix {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    opacity: 1;
+    z-index: 0;
+    width: 100%;
+    height: clamp(240px, 77vw, 330px);
+    margin: clamp(-13rem, -49vw, -9rem) auto 0;
+    pointer-events: none;
+  }
+
+  .hero-sphere-mobile-fix * {
+    pointer-events: none;
+  }
+}

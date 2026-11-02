@@ -1,0 +1,238 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project App.xcodeproj -scheme App -configuration Debug -sdk iphonesimulator build
+
+Build settings from command line:
+    SDKROOT = iphonesimulator26.4
+
+Resolve Package Graph
+
+
+Resolved source packages:
+  AppAuth: https://github.com/openid/AppAuth-iOS.git @ 1.7.6
+  CapacitorLocalNotifications: /Users/atharvalepse/Documents/nextignition/frontend/node_modules/@capacitor/local-notifications @ local
+  capacitor-swift-pm: https://github.com/ionic-team/capacitor-swift-pm.git @ main (6a2a3fe)
+  GTMAppAuth: https://github.com/google/GTMAppAuth.git @ 1.3.1
+  CapApp-SPM: /Users/atharvalepse/Documents/nextignition/frontend/ios/App/CapApp-SPM @ local
+  CapacitorPushNotifications: /Users/atharvalepse/Documents/nextignition/frontend/node_modules/@capacitor/push-notifications @ local
+  CapacitorNetwork: /Users/atharvalepse/Documents/nextignition/frontend/node_modules/@capacitor/network @ local
+  IONGeolocationLib: https://github.com/ionic-team/ion-ios-geolocation.git @ 2.1.1
+  GTMSessionFetcher: https://github.com/google/gtm-session-fetcher.git @ 2.3.0
+  CapacitorDevice: /Users/atharvalepse/Documents/nextignition/frontend/node_modules/@capacitor/device @ local
+  CapacitorGeolocation: /Users/atharvalepse/Documents/nextignition/frontend/node_modules/@capacitor/geolocation @ local
+  CodetrixStudioCapacitorGoogleAuth: /Users/atharvalepse/Documents/nextignition/frontend/node_modules/@codetrix-studio/capacitor-google-auth @ local
+  CapacitorPreferences: /Users/atharvalepse/Documents/nextignition/frontend/node_modules/@capacitor/preferences @ local
+  CapacitorCamera: /Users/atharvalepse/Documents/nextignition/frontend/node_modules/@capacitor/camera @ local
+  GoogleSignIn: https://github.com/google/GoogleSignIn-iOS.git @ 6.2.4
+
+2026-04-13 22:29:26.162 xcodebuild[47864:877840] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+--- xcodebuild: WARNING: Using the first of multiple matching destinations:
+{ platform:iOS Simulator, id:dvtdevice-DVTiOSDeviceSimulatorPlaceholder-iphonesimulator:placeholder, name:Any iOS Simulator Device }
+{ platform:iOS Simulator, arch:arm64, id:F3A12425-CFEB-4394-A549-077301FF7340, OS:26.4, name:iPad (A16) }
+{ platform:iOS Simulator, arch:arm64, id:3207EA3D-A06A-4DA1-BDB2-E5FEFE19089E, OS:26.4, name:iPad Air 11-inch (M4) }
+{ platform:iOS Simulator, arch:arm64, id:EA02D5F0-1902-4194-AC14-116DCA2039E2, OS:26.4, name:iPad Air 13-inch (M4) }
+{ platform:iOS Simulator, arch:arm64, id:B529F19E-AD11-4218-9E73-8063420AC448, OS:26.4, name:iPad Pro 11-inch (M5) }
+{ platform:iOS Simulator, arch:arm64, id:02C57AF2-1675-4186-BD9A-57D709DC35FF, OS:26.4, name:iPad Pro 13-inch (M5) }
+{ platform:iOS Simulator, arch:arm64, id:0BA402F6-BD26-4405-9198-3CA0D021F5A3, OS:26.4, name:iPad mini (A17 Pro) }
+{ platform:iOS Simulator, arch:arm64, id:D5094CB7-7F38-41E1-8E86-66A216E63B63, OS:26.4, name:iPhone 17 }
+{ platform:iOS Simulator, arch:arm64, id:C8D73E4D-9088-4C52-B59E-EBE3AFDD3166, OS:26.4, name:iPhone 17 Pro }
+{ platform:iOS Simulator, arch:arm64, id:803579CA-BE90-4A51-9B77-C1C3643E0C12, OS:26.4, name:iPhone 17 Pro Max }
+{ platform:iOS Simulator, arch:arm64, id:108820F2-7585-4659-B6AE-78CBD07A9E40, OS:26.4, name:iPhone 17e }
+{ platform:iOS Simulator, arch:arm64, id:CBDE819B-9C72-4A4E-988D-273B867B449C, OS:26.4, name:iPhone Air }
+{ platform:macOS, arch:arm64, variant:Designed for [iPad,iPhone], id:00008142-000E21283A11401C, name:My Mac }
+{ platform:iOS, id:dvtdevice-DVTiPhonePlaceholder-iphoneos:placeholder, name:Any iOS Device }
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (36 targets)
+    Target 'App' in project 'App'
+        ➜ Explicit dependency on target 'CapApp-SPM' in project 'CapApp-SPM'
+    Target 'CapApp-SPM' in project 'CapApp-SPM'
+        ➜ Explicit dependency on target 'CapApp-SPM' in project 'CapApp-SPM'
+        ➜ Explicit dependency on target 'Capacitor' in project 'capacitor-swift-pm'
+        ➜ Explicit dependency on target 'Cordova' in project 'capacitor-swift-pm'
+        ➜ Explicit dependency on target 'CapacitorCamera' in project 'CapacitorCamera'
+        ➜ Explicit dependency on target 'CapacitorDevice' in project 'CapacitorDevice'
+        ➜ Explicit dependency on target 'CapacitorGeolocation' in project 'CapacitorGeolocation'
+        ➜ Explicit dependency on target 'CapacitorLocalNotifications' in project 'CapacitorLocalNotifications'
+        ➜ Explicit dependency on target 'CapacitorNetwork' in project 'CapacitorNetwork'
+        ➜ Explicit dependency on target 'CapacitorPreferences' in project 'CapacitorPreferences'
+        ➜ Explicit dependency on target 'CapacitorPushNotifications' in project 'CapacitorPushNotifications'
+        ➜ Explicit dependency on target 'CodetrixStudioCapacitorGoogleAuth' in project 'CodetrixStudioCapacitorGoogleAuth'
+    Target 'CapApp-SPM' in project 'CapApp-SPM'
+        ➜ Explicit dependency on target 'Capacitor' in project 'capacitor-swift-pm'
+        ➜ Explicit dependency on target 'Cordova' in project 'capacitor-swift-pm'
+        ➜ Explicit dependency on target 'CapacitorCamera' in project 'CapacitorCamera'
+        ➜ Explicit dependency on target 'CapacitorDevice' in project 'CapacitorDevice'
+        ➜ Explicit dependency on target 'CapacitorGeolocation' in project 'CapacitorGeolocation'
+        ➜ Explicit dependency on target 'CapacitorLocalNotifications' in project 'CapacitorLocalNotifications'
+        ➜ Explicit dependency on target 'CapacitorNetwork' in project 'CapacitorNetwork'
+        ➜ Explicit dependency on target 'CapacitorPreferences' in project 'CapacitorPreferences'
+        ➜ Explicit dependency on target 'CapacitorPushNotifications' in project 'CapacitorPushNotifications'
+        ➜ Explicit dependency on target 'CodetrixStudioCapacitorGoogleAuth' in project 'CodetrixStudioCapacitorGoogleAuth'
+    Target 'CodetrixStudioCapacitorGoogleAuth' in project 'CodetrixStudioCapacitorGoogleAuth'
+        ➜ Explicit dependency on target 'GoogleAuthPlugin' in project 'CodetrixStudioCapacitorGoogleAuth'
+        ➜ Explicit dependency on target 'Capacitor' in project 'capacitor-swift-pm'
+        ➜ Explicit dependency on target 'Cordova' in project 'capacitor-swift-pm'
+        ➜ Explicit dependency on target 'GoogleSignIn' in project 'GoogleSignIn'
+    Target 'GoogleAuthPlugin' in project 'CodetrixStudioCapacitorGoogleAuth'
+        ➜ Explicit dependency on target 'Capacitor' in project 'capacitor-swift-pm'
+        ➜ Explicit dependency on target 'Cordova' in project 'capacitor-swift-pm'
+        ➜ Explicit dependency on target 'GoogleSignIn' in project 'GoogleSignIn'
+    Target 'GoogleSignIn' in project 'GoogleSignIn'
+        ➜ Explicit dependency on target 'GoogleSignIn' in project 'GoogleSignIn'
+        ➜ Explicit dependency on target 'GoogleSignIn_GoogleSignIn' in project 'GoogleSignIn'
+        ➜ Explicit dependency on target 'AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'GTMAppAuth' in project 'GTMAppAuth'
+        ➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+    Target 'GoogleSignIn' in project 'GoogleSignIn'
+        ➜ Explicit dependency on target 'GoogleSignIn_GoogleSignIn' in project 'GoogleSignIn'
+        ➜ Explicit dependency on target 'AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'GTMAppAuth' in project 'GTMAppAuth'
+        ➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+    Target 'GTMAppAuth' in project 'GTMAppAuth'
+        ➜ Explicit dependency on target 'GTMAppAuth' in project 'GTMAppAuth'
+        ➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+        ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+    Target 'GTMAppAuth' in project 'GTMAppAuth'
+        ➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+        ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+    Target 'AppAuthCore' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuth_AppAuthCore' in project 'AppAuth'
+    Target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+        ➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+    Target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher' (no dependencies)
+    Target 'AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuth_AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+    Target 'AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuth_AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+    Target 'AppAuthCore' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuth_AppAuthCore' in project 'AppAuth'
+    Target 'AppAuth_AppAuthCore' in project 'AppAuth' (no dependencies)
+    Target 'AppAuth_AppAuth' in project 'AppAuth' (no dependencies)
+    Target 'GoogleSignIn_GoogleSignIn' in project 'GoogleSignIn' (no dependencies)
+    Target 'CapacitorPushNotifications' in project 'CapacitorPushNotifications'
+        ➜ Explicit dependency on target 'PushNotificationsPlugin' in project 'CapacitorPushNotifications'
+        ➜ Explicit dependency on target 'Capacitor' in project 'capacitor-swift-pm'
+        ➜ Explicit dependency on target 'Cordova' in project 'capacitor-swift-pm'
+    Target 'PushNotificationsPlugin' in project 'CapacitorPushNotifications'
+        ➜ Explicit dependency on target 'Capacitor' in project 'capacitor-swift-pm'
+        ➜ Explicit dependency on target 'Cordova' in project 'capacitor-swift-pm'
+    Target 'CapacitorPreferences' in project 'CapacitorPreferences'
+        ➜ Explicit dependency on target 'PreferencesPlugin' in project 'CapacitorPreferences'
+        ➜ Explicit dependency on target 'Capacitor' in project 'capacitor-swift-pm'
+        ➜ Explicit dependency on target 'Cordova' in project 'capacitor-swift-pm'
+    Target 'PreferencesPlugin' in project 'CapacitorPreferences'
+        ➜ Explicit dependency on target 'Capacitor' in project 'capacitor-swift-pm'
+        ➜ Explicit dependency on target 'Cordova' in project 'capacitor-swift-pm'
+    Target 'CapacitorNetwork' in project 'CapacitorNetwork'
+        ➜ Explicit dependency on target 'CAPNetworkPlugin' in project 'CapacitorNetwork'
+        ➜ Explicit dependency on target 'Capacitor' in project 'capacitor-swift-pm'
+        ➜ Explicit dependency on target 'Cordova' in project 'capacitor-swift-pm'
+    Target 'CAPNetworkPlugin' in project 'CapacitorNetwork'
+        ➜ Explicit dependency on target 'Capacitor' in project 'capacitor-swift-pm'
+        ➜ Explicit dependency on target 'Cordova' in project 'capacitor-swift-pm'
+    Target 'CapacitorLocalNotifications' in project 'CapacitorLocalNotifications'
+        ➜ Explicit dependency on target 'LocalNotificationsPlugin' in project 'CapacitorLocalNotifications'
+        ➜ Explicit dependency on target 'Capacitor' in project 'capacitor-swift-pm'
+        ➜ Explicit dependency on target 'Cordova' in project 'capacitor-swift-pm'
+    Target 'LocalNotificationsPlugin' in project 'CapacitorLocalNotifications'
+        ➜ Explicit dependency on target 'Capacitor' in project 'capacitor-swift-pm'
+        ➜ Explicit dependency on target 'Cordova' in project 'capacitor-swift-pm'
+    Target 'CapacitorGeolocation' in project 'CapacitorGeolocation'
+        ➜ Explicit dependency on target 'GeolocationPlugin' in project 'CapacitorGeolocation'
+        ➜ Explicit dependency on target 'Capacitor' in project 'capacitor-swift-pm'
+        ➜ Explicit dependency on target 'Cordova' in project 'capacitor-swift-pm'
+        ➜ Explicit dependency on target 'IONGeolocationLib' in project 'IONGeolocationLib'
+    Target 'GeolocationPlugin' in project 'CapacitorGeolocation'
+        ➜ Explicit dependency on target 'Capacitor' in project 'capacitor-swift-pm'
+        ➜ Explicit dependency on target 'Cordova' in project 'capacitor-swift-pm'
+        ➜ Explicit dependency on target 'IONGeolocationLib' in project 'IONGeolocationLib'
+    Target 'IONGeolocationLib' in project 'IONGeolocationLib'
+        ➜ Explicit dependency on target 'IONGeolocationLib' in project 'IONGeolocationLib'
+    Target 'IONGeolocationLib' in project 'IONGeolocationLib' (no dependencies)
+    Target 'CapacitorDevice' in project 'CapacitorDevice'
+        ➜ Explicit dependency on target 'DevicePlugin' in project 'CapacitorDevice'
+        ➜ Explicit dependency on target 'Capacitor' in project 'capacitor-swift-pm'
+        ➜ Explicit dependency on target 'Cordova' in project 'capacitor-swift-pm'
+    Target 'DevicePlugin' in project 'CapacitorDevice'
+        ➜ Explicit dependency on target 'Capacitor' in project 'capacitor-swift-pm'
+        ➜ Explicit dependency on target 'Cordova' in project 'capacitor-swift-pm'
+    Target 'CapacitorCamera' in project 'CapacitorCamera'
+        ➜ Explicit dependency on target 'CameraPlugin' in project 'CapacitorCamera'
+        ➜ Explicit dependency on target 'Capacitor' in project 'capacitor-swift-pm'
+        ➜ Explicit dependency on target 'Cordova' in project 'capacitor-swift-pm'
+    Target 'CameraPlugin' in project 'CapacitorCamera'
+        ➜ Explicit dependency on target 'Capacitor' in project 'capacitor-swift-pm'
+        ➜ Explicit dependency on target 'Cordova' in project 'capacitor-swift-pm'
+    Target 'Cordova' in project 'capacitor-swift-pm' (no dependencies)
+    Target 'Capacitor' in project 'capacitor-swift-pm' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc --version
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.4.sdk -x objective-c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/ibtool --version --output-format xml1
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/actool --print-asset-tag-combinations --output-format xml1 /Users/atharvalepse/Documents/nextignition/frontend/ios/App/App/Assets.xcassets
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.4.sdk -x c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/actool --version --output-format xml1
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.4.sdk -x c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld -version_details
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.4.sdk -x objective-c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.4.sdk -x c -c /dev/null
+
+Build description signature: e47f3c72e0e45b9c7940af14546c6b42
+Build description path: /Users/atharvalepse/Library/Developer/Xcode/DerivedData/App-fcksucanhkucyddkatpczapidamw/Build/Intermediates.noindex/XCBuildData/e47f3c72e0e45b9c7940af14546c6b42.xcbuilddata
+ClangStatCache /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.4.sdk /Users/atharvalepse/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator26.4-23E237-686eebb5dc1d8ecb277353a59184f4aa.sdkstatcache
+    cd /Users/atharvalepse/Documents/nextignition/frontend/ios/App/App.xcodeproj
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.4.sdk -o /Users/atharvalepse/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator26.4-23E237-686eebb5dc1d8ecb277353a59184f4aa.sdkstatcache
+
+ProcessInfoPlistFile /Users/atharvalepse/Library/Developer/Xcode/DerivedData/App-fcksucanhkucyddkatpczapidamw/Build/Products/Debug-iphonesimulator/GoogleSignIn_GoogleSignIn.bundle/Info.plist /Users/atharvalepse/Library/Developer/Xcode/DerivedData/App-fcksucanhkucyddkatpczapidamw/Build/Intermediates.noindex/GoogleSignIn.build/Debug-iphonesimulator/GoogleSignIn_GoogleSignIn.build/empty-GoogleSignIn_GoogleSignIn.plist (in target 'GoogleSignIn_GoogleSignIn' from project 'GoogleSignIn')
+    cd /Users/atharvalepse/Library/Developer/Xcode/DerivedData/App-fcksucanhkucyddkatpczapidamw/SourcePackages/checkouts/GoogleSignIn-iOS
+    builtin-infoPlistUtility /Users/atharvalepse/Library/Developer/Xcode/DerivedData/App-fcksucanhkucyddkatpczapidamw/Build/Intermediates.noindex/GoogleSignIn.build/Debug-iphonesimulator/GoogleSignIn_GoogleSignIn.build/empty-GoogleSignIn_GoogleSignIn.plist -producttype com.apple.product-type.bundle -expandbuildsettings -format binary -platform iphonesimulator -o /Users/atharvalepse/Library/Developer/Xcode/DerivedData/App-fcksucanhkucyddkatpczapidamw/Build/Products/Debug-iphonesimulator/GoogleSignIn_GoogleSignIn.bundle/Info.plist
+
+ProcessInfoPlistFile /Users/atharvalepse/Library/Developer/Xcode/DerivedData/App-fcksucanhkucyddkatpczapidamw/Build/Products/Debug-iphonesimulator/AppAuth_AppAuth.bundle/Info.plist /Users/atharvalepse/Library/Developer/Xcode/DerivedData/App-fcksucanhkucyddkatpczapidamw/Build/Intermediates.noindex/AppAuth.build/Debug-iphonesimulator/AppAuth_AppAuth.build/empty-AppAuth_AppAuth.plist (in target 'AppAuth_AppAuth' from project 'AppAuth')
+    cd /Users/atharvalepse/Library/Developer/Xcode/DerivedData/App-fcksucanhkucyddkatpczapidamw/SourcePackages/checkouts/AppAuth-iOS
+    builtin-infoPlistUtility /Users/atharvalepse/Library/Developer/Xcode/DerivedData/App-fcksucanhkucyddkatpczapidamw/Build/Intermediates.noindex/AppAuth.build/Debug-iphonesimulator/AppAuth_AppAuth.build/empty-AppAuth_AppAuth.plist -producttype com.apple.product-type.bundle -expandbuildsettings -format binary -platform iphonesimulator -o /Users/atharvalepse/Library/Developer/Xcode/DerivedData/App-fcksucanhkucyddkatpczapidamw/Build/Products/Debug-iphonesimulator/AppAuth_AppAuth.bundle/Info.plist
+
+ProcessInfoPlistFile /Users/atharvalepse/Library/Developer/Xcode/DerivedData/App-fcksucanhkucyddkatpczapidamw/Build/Products/Debug-iphonesimulator/AppAuth_AppAuthCore.bundle/Info.plist /Users/atharvalepse/Library/Developer/Xcode/DerivedData/App-fcksucanhkucyddkatpczapidamw/Build/Intermediates.noindex/AppAuth.build/Debug-iphonesimulator/AppAuth_AppAuthCore.build/empty-AppAuth_AppAuthCore.plist (in target 'AppAuth_AppAuthCore' from project 'AppAuth')
+    cd /Users/atharvalepse/Library/Developer/Xcode/DerivedData/App-fcksucanhkucyddkatpczapidamw/SourcePackages/checkouts/AppAuth-iOS
+    builtin-infoPlistUtility /Users/atharvalepse/Library/Developer/Xcode/DerivedData/App-fcksucanhkucyddkatpczapidamw/Build/Intermediates.noindex/AppAuth.build/Debug-iphonesimulator/AppAuth_AppAuthCore.build/empty-AppAuth_AppAuthCore.plist -producttype com.apple.product-type.bundle -expandbuildsettings -format binary -platform iphonesimulator -o /Users/atharvalepse/Library/Developer/Xcode/DerivedData/App-fcksucanhkucyddkatpczapidamw/Build/Products/Debug-iphonesimulator/AppAuth_AppAuthCore.bundle/Info.plist
+
+Copy /Users/atharvalepse/Library/Developer/Xcode/DerivedData/App-fcksucanhkucyddkatpczapidamw/Build/Products/Debug-iphonesimulator/App.app/GoogleSignIn_GoogleSignIn.bundle /Users/atharvalepse/Library/Developer/Xcode/DerivedData/App-fcksucanhkucyddkatpczapidamw/Build/Products/Debug-iphonesimulator/GoogleSignIn_GoogleSignIn.bundle (in target 'App' from project 'App')
+    cd /Users/atharvalepse/Documents/nextignition/frontend/ios/App
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/atharvalepse/Library/Developer/Xcode/DerivedData/App-fcksucanhkucyddkatpczapidamw/Build/Products/Debug-iphonesimulator/GoogleSignIn_GoogleSignIn.bundle /Users/atharvalepse/Library/Developer/Xcode/DerivedData/App-fcksucanhkucyddkatpczapidamw/Build/Products/Debug-iphonesimulator/App.app
+
+ProcessInfoPlistFile /Users/atharvalepse/Library/Developer/Xcode/DerivedData/App-fcksucanhkucyddkatpczapidamw/Build/Products/Debug-iphonesimulator/App.app/Info.plist /Users/atharvalepse/Documents/nextignition/frontend/ios/App/App/Info.plist (in target 'App' from project 'App')
+    cd /Users/atharvalepse/Documents/nextignition/frontend/ios/App
+    builtin-infoPlistUtility /Users/atharvalepse/Documents/nextignition/frontend/ios/App/App/Info.plist -producttype com.apple.product-type.application -genpkginfo /Users/atharvalepse/Library/Developer/Xcode/DerivedData/App-fcksucanhkucyddkatpczapidamw/Build/Products/Debug-iphonesimulator/App.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -additionalcontentfile /Users/atharvalepse/Library/Developer/Xcode/DerivedData/App-fcksucanhkucyddkatpczapidamw/Build/Intermediates.noindex/App.build/Debug-iphonesimulator/App.build/Base.lproj/LaunchScreen-SBPartialInfo.plist -additionalcontentfile /Users/atharvalepse/Library/Developer/Xcode/DerivedData/App-fcksucanhkucyddkatpczapidamw/Build/Intermediates.noindex/App.build/Debug-iphonesimulator/App.build/Base.lproj/Main-SBPartialInfo.plist -additionalcontentfile /Users/atharvalepse/Library/Developer/Xcode/DerivedData/App-fcksucanhkucyddkatpczapidamw/Build/Intermediates.noindex/App.build/Debug-iphonesimulator/App.build/assetcatalog_generated_info.plist -scanforprivacyfile /Users/atharvalepse/Library/Developer/Xcode/DerivedData/App-fcksucanhkucyddkatpczapidamw/Build/Products/Debug-iphonesimulator/App.app/AppAuth_AppAuth.bundle -scanforprivacyfile /Users/atharvalepse/Library/Developer/Xcode/DerivedData/App-fcksucanhkucyddkatpczapidamw/Build/Products/Debug-iphonesimulator/App.app/AppAuth_AppAuthCore.bundle -scanforprivacyfile /Users/atharvalepse/Library/Developer/Xcode/DerivedData/App-fcksucanhkucyddkatpczapidamw/Build/Products/Debug-iphonesimulator/App.app/Frameworks/Capacitor.framework -scanforprivacyfile /Users/atharvalepse/Library/Developer/Xcode/DerivedData/App-fcksucanhkucyddkatpczapidamw/Build/Products/Debug-iphonesimulator/App.app/Frameworks/Cordova.framework -scanforprivacyfile /Users/atharvalepse/Library/Developer/Xcode/DerivedData/App-fcksucanhkucyddkatpczapidamw/Build/Products/Debug-iphonesimulator/App.app/GoogleSignIn_GoogleSignIn.bundle -o /Users/atharvalepse/Library/Developer/Xcode/DerivedData/App-fcksucanhkucyddkatpczapidamw/Build/Products/Debug-iphonesimulator/App.app/Info.plist
+
+CopySwiftLibs /Users/atharvalepse/Library/Developer/Xcode/DerivedData/App-fcksucanhkucyddkatpczapidamw/Build/Products/Debug-iphonesimulator/App.app (in target 'App' from project 'App')
+    cd /Users/atharvalepse/Documents/nextignition/frontend/ios/App
+    builtin-swiftStdLibTool --copy --verbose --sign - --scan-executable /Users/atharvalepse/Library/Developer/Xcode/DerivedData/App-fcksucanhkucyddkatpczapidamw/Build/Products/Debug-iphonesimulator/App.app/App.debug.dylib --scan-folder /Users/atharvalepse/Library/Developer/Xcode/DerivedData/App-fcksucanhkucyddkatpczapidamw/Build/Products/Debug-iphonesimulator/App.app/Frameworks --scan-folder /Users/atharvalepse/Library/Developer/Xcode/DerivedData/App-fcksucanhkucyddkatpczapidamw/Build/Products/Debug-iphonesimulator/App.app/PlugIns --scan-folder /Users/atharvalepse/Library/Developer/Xcode/DerivedData/App-fcksucanhkucyddkatpczapidamw/Build/Products/Debug-iphonesimulator/App.app/SystemExtensions --scan-folder /Users/atharvalepse/Library/Developer/Xcode/DerivedData/App-fcksucanhkucyddkatpczapidamw/Build/Products/Debug-iphonesimulator/App.app/Extensions --platform iphonesimulator --toolchain /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /Users/atharvalepse/Library/Developer/Xcode/DerivedData/App-fcksucanhkucyddkatpczapidamw/Build/Products/Debug-iphonesimulator/App.app/Frameworks --strip-bitcode --strip-bitcode-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /Users/atharvalepse/Library/Developer/Xcode/DerivedData/App-fcksucanhkucyddkatpczapidamw/Build/Intermediates.noindex/App.build/Debug-iphonesimulator/App.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os --back-deploy-swift-span
+
+** BUILD SUCCEEDED **
+

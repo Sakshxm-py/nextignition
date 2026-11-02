@@ -1,0 +1,644 @@
+[
+  {
+    "data": {
+      "id": "fa7e158d-828d-4b21-a590-371562eae2b4",
+      "name": "Test User",
+      "role": "founder",
+      "email": "testuser12@example.com",
+      "roles": [
+        "founder"
+      ],
+      "profile": {},
+      "password": "$2b$10$vN9PSx/xP46Zx65fbwcUSeeG0svXCW.a/7ssFv6z4L2so6Htvzu5S",
+      "createdAt": "2026-03-29T10:43:51.754Z",
+      "updatedAt": "2026-03-29T10:47:30.985Z",
+      "isVerified": true,
+      "voiceSettings": {
+        "inputVolume": 80,
+        "selectedMic": "default",
+        "outputVolume": 100,
+        "communityTheme": "classic",
+        "selectedSpeaker": "default"
+      },
+      "profilesCreated": {
+        "expert": false,
+        "founder": false,
+        "investor": false
+      },
+      "verificationInfo": {
+        "roles": [
+          "founder"
+        ],
+        "expert": null,
+        "founder": {
+          "stage": "",
+          "website": "",
+          "industry": "",
+          "teamSize": "",
+          "pitchDeck": "",
+          "hasStartup": "no",
+          "startupName": "",
+          "fundingAmount": "",
+          "isFundraising": false,
+          "monthlyRevenue": ""
+        },
+        "investor": null,
+        "basicInfo": {
+          "bio": "This is a test bio for verification.",
+          "phone": "",
+          "location": "",
+          "username": "testuser12",
+          "avatarUrl": "",
+          "githubUrl": "",
+          "twitterUrl": "",
+          "linkedinUrl": "https://linkedin.com/in/testuser12"
+        }
+      },
+      "verificationStatus": "pending",
+      "verificationSubmittedAt": "2026-03-29T10:47:10.970Z"
+    }
+  },
+  {
+    "data": {
+      "__v": 0,
+      "_id": "69970e28071c111f646299b5",
+      "name": "Devansh ",
+      "role": "founder",
+      "email": "devanshkatole123@gmail.com",
+      "roles": [
+        "founder"
+      ],
+      "avatar": "http://localhost:5000/uploads/1771768483499-568796632.jpg",
+      "profile": {
+        "skills": [],
+        "expertise": [],
+        "interests": []
+      },
+      "password": "$2b$10$JnABV0Ktn90u8bLtktiTzOuS6yvgKUxVnW51YaRue4t4acS2351ha",
+      "createdAt": "2026-02-19T13:20:40.399Z",
+      "updatedAt": "2026-02-23T04:19:47.770Z",
+      "isVerified": true,
+      "verifiedAt": "2026-03-28T06:49:09.535Z",
+      "verifiedBy": "admin@nextignition.io",
+      "verificationStatus": "approved",
+      "verificationBannerDismissedUntil": "2026-02-24T04:19:47.141Z"
+    }
+  },
+  {
+    "data": {
+      "__v": 0,
+      "_id": "69a5b499fe000be997cc21ff",
+      "name": "Atharva Prakash  Lepse",
+      "role": "founder",
+      "email": "rohinilepse11@gmail.com",
+      "roles": [
+        "founder"
+      ],
+      "profile": {
+        "skills": [],
+        "expertise": [],
+        "interests": []
+      },
+      "frozenAt": null,
+      "frozenBy": null,
+      "isFrozen": false,
+      "password": "$2b$10$ftfQs5ns76Qmy0PaYkrKYu0Bo9lD4Mn1IPaPA3mGHvYGOEVEmr7r.",
+      "createdAt": "2026-03-02T16:02:33.831Z",
+      "updatedAt": "2026-03-02T16:02:49.418Z",
+      "isVerified": true,
+      "verifiedAt": "2026-03-28T17:35:25.803Z",
+      "verifiedBy": "admin@nextignition.io",
+      "authProvider": "local",
+      "verificationStatus": "approved",
+      "emailVerificationOtpHash": "00ff808099d92df295c07c79cf840a4f1c5f9103829dd628187d484288247116",
+      "emailVerificationOtpExpiresAt": "2026-03-02T16:12:33.908Z",
+      "verificationBannerDismissedUntil": "2026-03-03T16:02:46.938Z"
+    }
+  },
+  {
+    "data": {
+      "__v": 0,
+      "_id": "69941f3ff035f6a4fbf045b4",
+      "name": "expert",
+      "role": "investor",
+      "email": "expert@gmail.com",
+      "roles": [
+        "expert"
+      ],
+      "avatar": "https://btxdxwyvloucxdfjlfhb.supabase.co/storage/v1/object/public/profile-pics/avatars/69941f3ff035f6a4fbf045b4/1773234855392-30a04187b4f1f913.jpeg",
+      "profile": {
+        "skills": [],
+        "expertise": [],
+        "interests": []
+      },
+      "password": "$2b$10$3bOvEXR9jhcJqkpTi5pEwu28EDh3/ba0O0SVEwAbGc4XolzJXYGJC",
+      "createdAt": "2026-02-17T07:56:47.032Z",
+      "updatedAt": "2026-03-11T13:14:17.074Z",
+      "isVerified": true,
+      "verifiedAt": "2026-03-28T17:40:58.590Z",
+      "verifiedBy": "admin@nextignition.io",
+      "profilesCreated": {
+        "expert": true,
+        "founder": true,
+        "investor": true
+      },
+      "verificationStatus": "approved"
+    }
+  },
+  {
+    "data": {
+      "id": "28bd1c0b-b9e5-4fed-a862-2932dd350bbf",
+      "name": "Santhosh",
+      "role": "founder",
+      "email": "vanaparthisanthoshconnect@gmail.com",
+      "roles": [
+        "founder"
+      ],
+      "profile": {},
+      "password": "$2b$10$QGXO2UBbqmOtla0NB/H4h.ej.K2seKfniBPeReuSv5X4DGB/z9nk6",
+      "createdAt": "2026-03-29T15:42:24.330Z",
+      "updatedAt": "2026-03-29T15:43:11.888Z",
+      "isVerified": true,
+      "voiceSettings": {
+        "inputVolume": 80,
+        "selectedMic": "default",
+        "outputVolume": 100,
+        "communityTheme": "classic",
+        "selectedSpeaker": "default"
+      },
+      "profilesCreated": {
+        "expert": false,
+        "founder": false,
+        "investor": false
+      }
+    }
+  },
+  {
+    "data": {
+      "id": "69abd0d2eab92af3b2b2dbed",
+      "_id": "69abd0d2eab92af3b2b2dbed",
+      "name": "siddhi chopra",
+      "role": "expert",
+      "email": "siddhichopra96@gmail.com",
+      "roles": [
+        "expert"
+      ],
+      "profile": {
+        "skills": [],
+        "expertise": [],
+        "interests": [],
+        "socialsVerified": {
+          "github": false,
+          "twitter": false,
+          "website": false,
+          "linkedin": false,
+          "instagram": false
+        }
+      },
+      "password": "$2b$10$t0TkiyApldM8DhOdrGrLh.3pCVqKRLBYKuh83/Snqkv44aRI.2Cl.",
+      "createdAt": "2026-03-07T07:16:34.695Z",
+      "updatedAt": "2026-03-07T07:16:34.850Z",
+      "isVerified": true,
+      "verifiedAt": "2026-03-28T17:35:59.094Z",
+      "verifiedBy": "admin@nextignition.io",
+      "authProvider": "local",
+      "verificationStatus": "approved",
+      "emailVerificationOtpHash": "d6d6c99fe8726437a41b7a8f0bd8c3427591a401cab1f99f841fbb3b49155c08",
+      "emailVerificationOtpExpiresAt": "2026-03-07T07:26:34.850Z"
+    }
+  },
+  {
+    "data": {
+      "id": "u7h3ufwvn5r",
+      "name": "qwrtyuio",
+      "role": "expert",
+      "email": "q@gmail.com",
+      "roles": [
+        "expert"
+      ],
+      "profile": {},
+      "password": "$2b$10$jXAuhB.ihZkJz2Kx4nJEX.g9cPSAZxh6Y4atYgVxQtZa.EtOgQsB.",
+      "createdAt": "2026-03-11T08:54:30.524Z",
+      "isVerified": false,
+      "profilesCreated": {
+        "expert": false,
+        "founder": false,
+        "investor": false
+      }
+    }
+  },
+  {
+    "data": {
+      "id": "b4f507e8-1df9-4673-9d44-3834838b1282",
+      "name": "ROHAN Untawale",
+      "role": "founder",
+      "email": "ABC@gmail.com",
+      "roles": [
+        "founder"
+      ],
+      "profile": {},
+      "password": "$2b$10$C1PwDYQUD/Ys3yhILIIDWuwq0P1Xs.msBCEPdADrqdDQXKpl7O8K2",
+      "createdAt": "2026-03-11T16:38:56.449Z",
+      "isVerified": true,
+      "verifiedAt": "2026-03-28T21:05:43.872Z",
+      "verifiedBy": "admin@nextignition.io",
+      "profilesCreated": {
+        "expert": false,
+        "founder": false,
+        "investor": false
+      },
+      "verificationStatus": "approved"
+    }
+  },
+  {
+    "data": {
+      "id": "665d8e06-fc78-479f-af00-205218feeb5b",
+      "name": "Rohan Untawale",
+      "role": "founder",
+      "email": "untawalerohan@gmail.com",
+      "roles": [
+        "founder"
+      ],
+      "avatar": "https://lh3.googleusercontent.com/a/ACg8ocI9WSpkC6nTRrWm5Wrekqk_H0jc1sjFV7R0BnBW_HWUxVaIeQ=s96-c",
+      "profile": {
+        "bio": "",
+        "socials": {
+          "github": "",
+          "twitter": "",
+          "linkedin": "https://www.linkedin.com/in/rohan-untaw",
+          "instagram": ""
+        },
+        "website": "",
+        "location": "",
+        "teamSize": "1",
+        "foundedYear": "2025",
+        "startupName": "STARTUP",
+        "startupRole": "Founder",
+        "foundedMonth": "May",
+        "startupStage": "Ideation",
+        "fundingStatus": "Bootstrapped",
+        "startupStatus": "has-startup",
+        "socialsVerified": {
+          "linkedin": true
+        },
+        "startupIndustry": "SaaS"
+      },
+      "frozenAt": null,
+      "frozenBy": null,
+      "isFrozen": false,
+      "password": "$2b$10$xkUP07XHWq9JajS/9wW9ee5tRTsOZ/6XLE8R354TjEFbv0jRyIoGW",
+      "username": "rohanuntawale",
+      "createdAt": "2026-03-11T16:30:17.605Z",
+      "updatedAt": "2026-03-23T15:43:46.574Z",
+      "isVerified": true,
+      "verifiedAt": "2026-03-29T10:08:08.881Z",
+      "verifiedBy": "admin@nextignition.io",
+      "unverifiedAt": "2026-03-29T10:07:53.622Z",
+      "unverifiedBy": "admin@nextignition.io",
+      "voiceSettings": {
+        "inputVolume": 80,
+        "selectedMic": "default",
+        "outputVolume": 100,
+        "communityTheme": "classic",
+        "selectedSpeaker": "default"
+      },
+      "profilesCreated": {
+        "expert": true,
+        "founder": true,
+        "investor": true
+      },
+      "verificationStatus": "approved",
+      "verificationBannerDismissedUntil": "2026-03-26T16:46:20.233Z"
+    }
+  },
+  {
+    "data": {
+      "id": "3f01e616-3610-48cd-bba5-fb4c515eb714",
+      "name": "Aman Maddeshiya",
+      "role": "founder",
+      "email": "amaddeshiya9@gmail.com",
+      "roles": [
+        "founder"
+      ],
+      "avatar": "https://btxdxwyvloucxdfjlfhb.supabase.co/storage/v1/object/public/profile-pics/avatars/3f01e616-3610-48cd-bba5-fb4c515eb714/1774809914773-774f615f41011218.jpeg",
+      "aiUsage": {
+        "queries": 1
+      },
+      "profile": {},
+      "googleId": "113917972300084822709",
+      "createdAt": "2026-03-29T18:43:15.084Z",
+      "updatedAt": "2026-03-29T18:50:28.365Z",
+      "isVerified": true,
+      "profilesCreated": {
+        "expert": false,
+        "founder": true,
+        "investor": false
+      },
+      "verificationInfo": {
+        "roles": [
+          "founder"
+        ],
+        "expert": null,
+        "founder": {
+          "stage": "MVP",
+          "website": "",
+          "industry": "SaaS",
+          "teamSize": "",
+          "pitchDeck": "",
+          "hasStartup": "yes",
+          "startupName": "Creatordash",
+          "fundingAmount": "",
+          "isFundraising": false,
+          "monthlyRevenue": ""
+        },
+        "investor": null,
+        "basicInfo": {
+          "bio": "SaaS builder & full-stack developer | Built products used by 1M+ users | Currently building CreatorDash",
+          "phone": "9140517360",
+          "location": "",
+          "username": "amanaura",
+          "avatarUrl": "https://btxdxwyvloucxdfjlfhb.supabase.co/storage/v1/object/public/profile-pics/avatars/3f01e616-3610-48cd-bba5-fb4c515eb714/1774809914773-774f615f41011218.jpeg",
+          "githubUrl": "https://github.com/inbuilt-aura",
+          "twitterUrl": "https://x.com/aman_aura",
+          "linkedinUrl": "https://www.linkedin.com/in/aman-maddheshiya-b437581b1"
+        }
+      },
+      "verificationStatus": "pending",
+      "verificationSubmittedAt": "2026-03-29T18:59:52.781Z"
+    }
+  },
+  {
+    "data": {
+      "id": "0bff03f1-1554-4f9c-a950-08aeec311d68",
+      "name": "Test User",
+      "role": "founder",
+      "email": "test_sign_up@example.com",
+      "roles": [
+        "founder"
+      ],
+      "profile": {},
+      "password": "$2b$10$cY1.4pRX5xnwSRwDLWHHBuE4wT4Rm1IvGeHXbxaif2g5xu.RLXawu",
+      "createdAt": "2026-03-15T15:50:35.219Z",
+      "isVerified": false,
+      "subscription": {
+        "plan": "pro",
+        "status": "active",
+        "updatedAt": "2026-03-15T16:11:48.861Z",
+        "expiryDate": "2026-04-15T16:11:47.862Z",
+        "razorpayOrderId": "order_SRYqUBD6hzXvng",
+        "razorpayPaymentId": "pay_SRYunxcYk5nZ3h"
+      },
+      "profilesCreated": {
+        "expert": false,
+        "founder": false,
+        "investor": false
+      }
+    }
+  },
+  {
+    "data": {
+      "__v": 0,
+      "_id": "6990b252d6341c83b6f1e497",
+      "name": "Shivansh Verma",
+      "role": "expert",
+      "email": "shivansh1411@gmail.com",
+      "roles": [
+        "founder",
+        "expert",
+        "investor"
+      ],
+      "avatar": "https://lh3.googleusercontent.com/a/ACg8ocIEG3l0TTZ4121hiYyqkE4mVyu40my7lPjTNigPLcm7jCNuUrzd=s96-c",
+      "profile": {
+        "bio": "",
+        "skills": [],
+        "socials": {
+          "github": "",
+          "twitter": "",
+          "linkedin": "",
+          "instagram": ""
+        },
+        "website": "",
+        "location": "",
+        "teamSize": "1",
+        "expertise": [],
+        "interests": [],
+        "foundedYear": "2024",
+        "startupName": "",
+        "startupRole": "Founder",
+        "foundedMonth": "January",
+        "startupStage": "Ideation",
+        "fundingStatus": "Bootstrapped",
+        "startupStatus": "has-startup",
+        "startupIndustry": ""
+      },
+      "password": "$2b$10$fYAfruFYgjz3xrMLih60v.dGFZNGRlwC3.P5TfqAZQYUXFiVDQwFW",
+      "username": "shivanshverma",
+      "createdAt": "2026-02-14T17:35:15.251Z",
+      "updatedAt": "2026-03-08T17:32:49.827Z",
+      "coverPhoto": "https://nextignition-l3b5.onrender.com/uploads/1772953026255-180415179.jpeg",
+      "isVerified": true,
+      "profilesCreated": {
+        "expert": true,
+        "founder": true,
+        "investor": true
+      }
+    }
+  },
+  {
+    "data": {
+      "id": "3d25826a-62f1-4341-8e19-c89086562df2",
+      "name": "Rudra Singh",
+      "role": "founder",
+      "email": "rudrasingh1108@gmail.com",
+      "roles": [
+        "founder"
+      ],
+      "avatar": "https://lh3.googleusercontent.com/a/ACg8ocJ3_0ijlGdjx37bHy46zPsFFRPeeXX3CsjMwMTN8vJ0SdOdx58A=s96-c",
+      "googleId": "100864498417254308876",
+      "createdAt": "2026-03-19T08:57:27.659Z",
+      "isVerified": true,
+      "profilesCreated": {
+        "expert": false,
+        "founder": true,
+        "investor": false
+      }
+    }
+  },
+  {
+    "data": {
+      "id": "52ab4ff0-7878-4532-b826-67cdfc9a1eec",
+      "name": "Raj Gedam",
+      "role": "founder",
+      "email": "rajvgedam2003@gmail.com",
+      "roles": [
+        "founder"
+      ],
+      "avatar": "https://btxdxwyvloucxdfjlfhb.supabase.co/storage/v1/object/public/profile-pics/avatars/52ab4ff0-7878-4532-b826-67cdfc9a1eec/1774883066511-cae174b806f2f79e.jpeg",
+      "aiUsage": {
+        "queries": 1
+      },
+      "profile": {},
+      "googleId": "111389368817876155165",
+      "createdAt": "2026-03-30T15:03:17.157Z",
+      "updatedAt": "2026-03-30T15:04:41.437Z",
+      "isVerified": true,
+      "profilesCreated": {
+        "expert": false,
+        "founder": true,
+        "investor": false
+      },
+      "verificationInfo": {
+        "roles": [
+          "founder"
+        ],
+        "expert": null,
+        "founder": {
+          "stage": "",
+          "website": "",
+          "industry": "",
+          "teamSize": "",
+          "pitchDeck": "",
+          "hasStartup": "building",
+          "startupName": "",
+          "fundingAmount": "",
+          "isFundraising": false,
+          "monthlyRevenue": ""
+        },
+        "investor": null,
+        "basicInfo": {
+          "bio": "Raj Gedam| Founder | LinkedIn: linkedin.com/in/raj-gedam-87259b273 | @rajvg",
+          "phone": "9021196385",
+          "location": "",
+          "username": "rajvg",
+          "avatarUrl": "https://btxdxwyvloucxdfjlfhb.supabase.co/storage/v1/object/public/profile-pics/avatars/52ab4ff0-7878-4532-b826-67cdfc9a1eec/1774883066511-cae174b806f2f79e.jpeg",
+          "githubUrl": "",
+          "twitterUrl": "",
+          "linkedinUrl": "https://www.linkedin.com/in/raj-gedam-87259b273/"
+        }
+      },
+      "verificationStatus": "pending",
+      "verificationSubmittedAt": "2026-03-30T15:04:47.763Z"
+    }
+  },
+  {
+    "data": {
+      "id": "273c87f3-2289-4756-814c-0705efe13800",
+      "name": "Naveen Gonti",
+      "role": "founder",
+      "email": "gontinaveen512@gmail.com",
+      "roles": [
+        "founder"
+      ],
+      "avatar": "https://lh3.googleusercontent.com/a/ACg8ocIoTpvIGZK01qyqDhRrOfahvLpuctex171YZzjbKChSJuxy0Q=s96-c",
+      "googleId": "103330652985320926585",
+      "createdAt": "2026-03-30T15:32:21.934Z",
+      "isVerified": true,
+      "profilesCreated": {
+        "expert": false,
+        "founder": true,
+        "investor": false
+      }
+    }
+  },
+  {
+    "data": {
+      "id": "25b248a3-e308-40dc-9c7d-3d38d24b773c",
+      "name": "shivansh verma",
+      "role": "founder",
+      "email": "shivanshverma1422@gmail.com",
+      "roles": [
+        "founder"
+      ],
+      "avatar": "https://lh3.googleusercontent.com/a/ACg8ocIuk8aweoWxz-Zn2g8bmTPk8jLsbswkWIo2hIHSaZ0tG6IqFSon=s96-c",
+      "googleId": "111189518814675777674",
+      "createdAt": "2026-03-19T19:07:43.610Z",
+      "isVerified": true,
+      "profilesCreated": {
+        "expert": false,
+        "founder": true,
+        "investor": false
+      }
+    }
+  },
+  {
+    "data": {
+      "id": "24de7a19-6c70-4c47-93d6-b35e7658b403",
+      "name": "careerstlabs",
+      "role": "investor",
+      "email": "careerstlabs@gmail.com",
+      "roles": [
+        "founder",
+        "investor"
+      ],
+      "avatar": "https://lh3.googleusercontent.com/a/ACg8ocK0AoxL9idpOiEZ0XHZL53sfKkc6_o9M8PgiKyQmCE_xY5MDw4=s96-c",
+      "googleId": "116961491791860213776",
+      "createdAt": "2026-03-19T19:08:09.145Z",
+      "isVerified": true,
+      "profilesCreated": {
+        "expert": false,
+        "founder": true,
+        "investor": true
+      }
+    }
+  },
+  {
+    "data": {
+      "id": "966aa2a4-4045-4c9d-aa6e-8033dd0fb170",
+      "name": "Test Founder",
+      "role": "founder",
+      "email": "testfounder@example.com",
+      "roles": [
+        "founder"
+      ],
+      "profile": {},
+      "password": "$2b$10$jaldaNUzmZshnC0Aov4WZOstVBcp1KMnA3dAmO/9N/auW5ToLbQca",
+      "createdAt": "2026-03-19T13:18:16.423Z",
+      "isVerified": false,
+      "profilesCreated": {
+        "expert": false,
+        "founder": false,
+        "investor": false
+      }
+    }
+  },
+  {
+    "data": {
+      "id": "d671b120-831e-4590-bd7c-c63baf221b96",
+      "name": "Test Investor",
+      "role": "investor",
+      "email": "investor@test.com",
+      "roles": [
+        "investor"
+      ],
+      "profile": {},
+      "password": "$2b$10$.ysIK.mfCDZlbPmWf2C5A.hKn.yBs/4CKBwwtR/Qjk0ZAWCyhgvKC",
+      "createdAt": "2026-03-19T16:34:17.957Z",
+      "isVerified": false,
+      "profilesCreated": {
+        "expert": false,
+        "founder": false,
+        "investor": false
+      }
+    }
+  },
+  {
+    "data": {
+      "id": "6ac142b0-b418-4282-a3c9-f79e4813f37a",
+      "name": "rohan",
+      "role": "founder",
+      "email": "rohanuntawale3524@gmail.com",
+      "roles": [
+        "founder"
+      ],
+      "avatar": "https://lh3.googleusercontent.com/a/ACg8ocIFnQeXIrLYx_Yb_fF0p1RaWIf7xI6HYYP3morFOPyap533zyo=s96-c",
+      "googleId": "105554630190356626802",
+      "createdAt": "2026-03-20T05:53:20.274Z",
+      "isVerified": true,
+      "profilesCreated": {
+        "expert": false,
+        "founder": true,
+        "investor": false
+      }
+    }
+  }
+]

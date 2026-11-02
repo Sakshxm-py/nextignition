@@ -1,0 +1,4 @@
+{
+    "thunder-client.AI.model": "gpt-4.1",
+    "css.lint.unknownAtRules": "ignore"
+}

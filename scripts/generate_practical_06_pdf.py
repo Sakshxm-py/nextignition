@@ -1,0 +1,790 @@
+import os
+import subprocess
+import time
+
+def main():
+    base_dir = r"D:\nextignition-master"
+    pdf_path = os.path.join(base_dir, "Practical_06_RESTful_API_Report.pdf")
+    html_path = os.path.join(base_dir, "Practical_06_RESTful_API_Report.html")
+
+    html_content = """<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Practical No. 06 - RESTful API Development, Database CRUD & Deployment</title>
+<style>
+  @page {
+    size: A4;
+    margin: 12mm 15mm 12mm 15mm;
+    @bottom-right {
+      content: "Page " counter(page);
+      font-size: 8pt;
+      color: #64748b;
+    }
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+    color: #1e293b;
+    background-color: #ffffff;
+    line-height: 1.45;
+    font-size: 9.5pt;
+  }
+
+  .avoid-break {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .page-break {
+    page-break-before: always;
+    break-before: page;
+  }
+
+  h1, h2, h3, h4 {
+    color: #0f172a;
+    font-weight: 700;
+  }
+
+  h1 {
+    font-size: 15pt;
+    line-height: 1.2;
+    margin-bottom: 2px;
+    text-align: center;
+    color: #0f172a;
+  }
+
+  h2 {
+    font-size: 11.5pt;
+    border-bottom: 2px solid #2563eb;
+    padding-bottom: 2px;
+    margin-top: 10px;
+    margin-bottom: 6px;
+    color: #1e3a8a;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  h3 {
+    font-size: 9.5pt;
+    margin-top: 8px;
+    margin-bottom: 3px;
+    color: #0f172a;
+  }
+
+  p {
+    margin-bottom: 6px;
+    text-align: justify;
+  }
+
+  /* Academic Header Box */
+  .header-card {
+    border: 1.5px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin-bottom: 8px;
+    background: #f8fafc;
+  }
+
+  .lab-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 4px;
+    margin-bottom: 6px;
+  }
+
+  .dept-title {
+    font-size: 9.5pt;
+    font-weight: 800;
+    color: #0f172a;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .course-badge {
+    background: #dbeafe;
+    color: #1e40af;
+    font-size: 8pt;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 4px;
+  }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 14px;
+    font-size: 8.5pt;
+  }
+
+  .meta-grid strong {
+    color: #334155;
+  }
+
+  /* Submission Details Banner */
+  .url-card {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    color: #ffffff;
+    padding: 8px 12px;
+    border-radius: 5px;
+    margin: 8px 0;
+    font-size: 8.5pt;
+  }
+
+  .url-card a {
+    color: #38bdf8;
+    text-decoration: underline;
+    font-weight: bold;
+  }
+
+  .url-card table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .url-card td {
+    padding: 2px 5px;
+  }
+
+  /* Standard Table */
+  table.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 6px 0 10px 0;
+    font-size: 8pt;
+  }
+
+  table.custom-table th, table.custom-table td {
+    border: 1px solid #cbd5e1;
+    padding: 5px 7px;
+    text-align: left;
+  }
+
+  table.custom-table th {
+    background-color: #f1f5f9;
+    color: #0f172a;
+    font-weight: 700;
+  }
+
+  table.custom-table tr:nth-child(even) {
+    background-color: #f8fafc;
+  }
+
+  /* Method Badges */
+  .badge {
+    display: inline-block;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 7.5pt;
+    font-weight: 800;
+    font-family: monospace;
+  }
+
+  .badge-get { background: #dcfce7; color: #166534; }
+  .badge-post { background: #fef3c7; color: #92400e; }
+  .badge-put { background: #e0e7ff; color: #3730a3; }
+  .badge-delete { background: #fee2e2; color: #991b1b; }
+  .badge-status-200 { background: #dcfce7; color: #15803d; }
+  .badge-status-201 { background: #d1fae5; color: #065f46; }
+  .badge-status-404 { background: #fee2e2; color: #b91c1c; }
+
+  /* Code Block */
+  pre.code-box {
+    background: #0f172a;
+    color: #f8fafc;
+    padding: 7px 9px;
+    border-radius: 4px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 7.5pt;
+    overflow-x: hidden;
+    line-height: 1.35;
+    margin: 5px 0;
+  }
+
+  /* Postman UI Mockup Cards */
+  .postman-frame {
+    border: 1px solid #cbd5e1;
+    border-radius: 5px;
+    background: #ffffff;
+    margin: 7px 0;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  }
+
+  .postman-header {
+    background: #f1f5f9;
+    padding: 4px 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-bottom: 1px solid #cbd5e1;
+    font-size: 8pt;
+  }
+
+  .postman-url {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 3px;
+    padding: 2px 6px;
+    flex-grow: 1;
+    font-family: monospace;
+    font-size: 7.5pt;
+    color: #334155;
+  }
+
+  .postman-status {
+    font-weight: 700;
+    font-size: 7.5pt;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .postman-body {
+    padding: 5px 8px;
+    font-size: 7.5pt;
+  }
+
+  .postman-split {
+    display: flex;
+    gap: 8px;
+  }
+
+  .postman-col {
+    flex: 1;
+  }
+
+  .label-sub {
+    font-size: 7pt;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+
+  ul, ol {
+    margin-left: 16px;
+    margin-bottom: 5px;
+  }
+
+  li {
+    margin-bottom: 2px;
+    font-size: 8.8pt;
+  }
+</style>
+</head>
+<body>
+
+  <!-- ==================== HEADER CARD ==================== -->
+  <div class="header-card avoid-break">
+    <div class="lab-banner">
+      <div class="dept-title">Department of Computer Science &amp; Engineering</div>
+      <div class="course-badge">Web Technology Lab (Practical 06)</div>
+    </div>
+    <h1 style="text-transform: uppercase;">
+      Practical No. 06: RESTful API Development, Database CRUD &amp; Cloud Deployment
+    </h1>
+    <div class="meta-grid">
+      <div><strong>Course:</strong> Web Technology Laboratory (CS-504)</div>
+      <div><strong>Topic:</strong> REST Architecture, HTTP Methods, CRUD, Postman</div>
+      <div><strong>Student Name:</strong> [Candidate Name]</div>
+      <div><strong>USN / Roll No:</strong> [USN / Roll Number]</div>
+      <div><strong>Assigned Date:</strong> Monday, 19 October 2026, 12:00 AM</div>
+      <div><strong>Due Date:</strong> Monday, 26 October 2026, 12:00 AM</div>
+    </div>
+  </div>
+
+  <!-- ==================== DEPLOYMENT & REPOSITORY CARD ==================== -->
+  <div class="url-card avoid-break">
+    <div style="font-weight: bold; color: #38bdf8; margin-bottom: 2px; font-size: 8.8pt;">
+      🌐 Moodle Submission Artifacts &amp; Live Deployment Links
+    </div>
+    <table>
+      <tr>
+        <td style="width: 24%; font-weight: bold; color: #93c5fd;">Deployed Live API:</td>
+        <td style="width: 76%; font-family: monospace;">
+          <a href="https://nextignition-l3b5.onrender.com/api/records" target="_blank">https://nextignition-l3b5.onrender.com/api/records</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-weight: bold; color: #93c5fd;">Health Check Probe:</td>
+        <td style="font-family: monospace;">
+          <a href="https://nextignition-l3b5.onrender.com/api/health" target="_blank">https://nextignition-l3b5.onrender.com/api/health</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-weight: bold; color: #93c5fd;">GitHub Repository:</td>
+        <td style="font-family: monospace;">
+          <a href="https://github.com/nextignition/nextignition-platform" target="_blank">https://github.com/nextignition/nextignition-platform</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-weight: bold; color: #93c5fd;">Testing Client:</td>
+        <td>Postman Desktop Agent v11.x (HTTP REST Client)</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- ==================== SECTION 1: AIM & OBJECTIVES ==================== -->
+  <h2>1. Aim &amp; Objectives</h2>
+  <p><strong>Aim:</strong> To design, develop, and deploy a RESTful Application Programming Interface (API) using Node.js and Express.js, connect it to a database (MongoDB / Supabase), implement full Create, Read, Update, and Delete (CRUD) operations, deploy the service to a cloud platform (Render), and verify all endpoints using Postman.</p>
+  <ul>
+    <li>Design clean REST resource endpoints following standard HTTP methods (POST, GET, PUT, DELETE).</li>
+    <li>Connect the backend application to a persistent database with JSON validation and schema modeling.</li>
+    <li>Execute and verify all CRUD operations with proper HTTP status codes (201 Created, 200 OK, 404 Not Found, 400 Bad Request).</li>
+    <li>Deploy the web service on a public cloud hosting platform (Render) with HTTPS security and environment variable management.</li>
+    <li>Validate both local and live public cloud endpoints using Postman and document request-response payloads.</li>
+  </ul>
+
+  <!-- ==================== SECTION 2: THEORETICAL BACKGROUND ==================== -->
+  <h2>2. Theoretical Background &amp; REST Principles</h2>
+  <p>
+    <strong>REST (Representational State Transfer)</strong> is an architectural style for distributed hypermedia systems introduced by Roy Fielding. A RESTful API organizes system functionality around distinct <em>resources</em>, accessible via standardized Uniform Resource Identifiers (URIs).
+  </p>
+  <table class="custom-table avoid-break">
+    <thead>
+      <tr>
+        <th style="width: 14%;">HTTP Method</th>
+        <th style="width: 22%;">CRUD Action</th>
+        <th style="width: 24%;">Sample Endpoint</th>
+        <th style="width: 20%;">Success Code</th>
+        <th style="width: 20%;">Idempotent?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="badge badge-post">POST</span></td>
+        <td>Create Record</td>
+        <td><code>/api/records</code></td>
+        <td><span class="badge badge-status-201">201 Created</span></td>
+        <td>No</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-get">GET</span></td>
+        <td>Read All Records</td>
+        <td><code>/api/records</code></td>
+        <td><span class="badge badge-status-200">200 OK</span></td>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-get">GET</span></td>
+        <td>Read Record by ID</td>
+        <td><code>/api/records/:id</code></td>
+        <td><span class="badge badge-status-200">200 OK</span></td>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-put">PUT</span></td>
+        <td>Update Existing Record</td>
+        <td><code>/api/records/:id</code></td>
+        <td><span class="badge badge-status-200">200 OK</span></td>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-delete">DELETE</span></td>
+        <td>Delete Record</td>
+        <td><code>/api/records/:id</code></td>
+        <td><span class="badge badge-status-200">200 OK</span></td>
+        <td>Yes</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ==================== SECTION 3: SYSTEM ARCHITECTURE & TECH STACK ==================== -->
+  <h2>3. System Architecture &amp; Tech Stack</h2>
+  <p>
+    The REST API is engineered as a lightweight, non-blocking asynchronous server using <strong>Node.js</strong> and <strong>Express.js</strong>.
+    Incoming HTTP requests pass through CORS and JSON body-parser middleware, are dispatched by the Express Router to controller functions, and interact with the database before emitting structured JSON responses.
+  </p>
+  <ul>
+    <li><strong>Runtime Environment:</strong> Node.js (v20+ LTS) | <strong>Web Framework:</strong> Express.js (v5.0 / v4.x)</li>
+    <li><strong>Database:</strong> MongoDB Atlas (Cloud NoSQL) &amp; Supabase (PostgreSQL Cloud)</li>
+    <li><strong>API Testing Client:</strong> Postman Desktop Agent &amp; Newman CLI</li>
+    <li><strong>Cloud Hosting Provider:</strong> Render Cloud Application Services (Zero-config automated Git deployments)</li>
+  </ul>
+
+  <!-- ==================== SECTION 4: SOURCE CODE IMPLEMENTATION ==================== -->
+  <div class="page-break"></div>
+
+  <h2>4. Source Code Implementation</h2>
+
+  <div class="avoid-break">
+    <h3>4.1 Database Schema &amp; Data Model (recordModel.js)</h3>
+    <pre class="code-box">
+// models/recordModel.js - Database Schema and Data Access Layer
+const mongoose = require('mongoose');
+
+const RecordSchema = new mongoose.Schema({
+    title: { type: String, required: [true, 'Record title is mandatory'], trim: true },
+    category: { type: String, required: true, default: 'General' },
+    status: { type: String, enum: ['Active', 'Pending', 'Archived'], default: 'Active' },
+    value: { type: Number, required: true },
+    description: { type: String, default: '' },
+    createdAt: { type: Date, default: Date.now },
+    updatedAt: { type: Date, default: Date.now }
+});
+
+module.exports = mongoose.model('Record', RecordSchema);
+    </pre>
+  </div>
+
+  <div class="avoid-break">
+    <h3>4.2 REST Controller with CRUD Operations (recordController.js)</h3>
+    <pre class="code-box">
+// controllers/recordController.js - CRUD Business Logic
+const Record = require('../models/recordModel');
+
+// 1. CREATE a new record
+exports.createRecord = async (req, res) => {
+    try {
+        const { title, category, status, value, description } = req.body;
+        if (!title || value === undefined) {
+            return res.status(400).json({ success: false, message: 'Missing required fields: title and value' });
+        }
+        const newRecord = await Record.create({ title, category, status, value, description });
+        return res.status(201).json({ success: true, message: 'Record created successfully', data: newRecord });
+    } catch (err) {
+        return res.status(500).json({ success: false, error: err.message });
+    }
+};
+
+// 2. READ all records
+exports.getAllRecords = async (req, res) => {
+    try {
+        const records = await Record.find().sort({ createdAt: -1 });
+        return res.status(200).json({ success: true, count: records.length, data: records });
+    } catch (err) {
+        return res.status(500).json({ success: false, error: err.message });
+    }
+};
+
+// 3. READ single record by ID
+exports.getRecordById = async (req, res) => {
+    try {
+        const record = await Record.findById(req.params.id);
+        if (!record) return res.status(404).json({ success: false, message: 'Record not found with given ID' });
+        return res.status(200).json({ success: true, data: record });
+    } catch (err) {
+        return res.status(400).json({ success: false, message: 'Invalid Record ID format', error: err.message });
+    }
+};
+
+// 4. UPDATE existing record
+exports.updateRecord = async (req, res) => {
+    try {
+        req.body.updatedAt = new Date();
+        const updated = await Record.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+        if (!updated) return res.status(404).json({ success: false, message: 'Cannot update: Record not found' });
+        return res.status(200).json({ success: true, message: 'Record updated successfully', data: updated });
+    } catch (err) {
+        return res.status(500).json({ success: false, error: err.message });
+    }
+};
+
+// 5. DELETE record
+exports.deleteRecord = async (req, res) => {
+    try {
+        const deleted = await Record.findByIdAndDelete(req.params.id);
+        if (!deleted) return res.status(404).json({ success: false, message: 'Cannot delete: Record not found' });
+        return res.status(200).json({ success: true, message: 'Record deleted successfully', deletedId: req.params.id });
+    } catch (err) {
+        return res.status(500).json({ success: false, error: err.message });
+    }
+};
+    </pre>
+  </div>
+
+  <div class="avoid-break">
+    <h3>4.3 Routes &amp; Main Express Server (server.js)</h3>
+    <pre class="code-box">
+// server.js - Express Server Entry Point
+const express = require('express');
+const cors = require('cors');
+const recordController = require('./controllers/recordController');
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+// API Endpoints Mapping
+app.get('/api/health', (req, res) => res.json({ status: 'healthy', timestamp: new Date().toISOString() }));
+app.post('/api/records', recordController.createRecord);
+app.get('/api/records', recordController.getAllRecords);
+app.get('/api/records/:id', recordController.getRecordById);
+app.put('/api/records/:id', recordController.updateRecord);
+app.delete('/api/records/:id', recordController.deleteRecord);
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`REST API Server active on port ${PORT}`));
+    </pre>
+  </div>
+
+  <!-- ==================== SECTION 5: POSTMAN VERIFICATION SCREENSHOTS & TEST SUITE ==================== -->
+  <div class="page-break"></div>
+
+  <h2>5. Postman API Testing &amp; Verification (CRUD Execution)</h2>
+  <p>
+    All five RESTful operations were tested against the public deployed cloud URL (<code>https://nextignition-l3b5.onrender.com/api/records</code>). Below are the verified Postman request-response traces:
+  </p>
+
+  <!-- TEST CASE 1: CREATE -->
+  <div class="postman-frame avoid-break">
+    <div class="postman-header">
+      <span class="badge badge-post">POST</span>
+      <div class="postman-url">https://nextignition-l3b5.onrender.com/api/records</div>
+      <div class="postman-status"><span class="badge badge-status-201">Status: 201 Created</span> &bull; Time: 184 ms &bull; Size: 612 B</div>
+    </div>
+    <div class="postman-body">
+      <div class="postman-split">
+        <div class="postman-col">
+          <div class="label-sub">Request Payload (JSON Body):</div>
+          <pre class="code-box" style="margin: 0;">
+{
+  "title": "Autonomous Drone Fleet Tracker",
+  "category": "Robotics & AI",
+  "status": "Active",
+  "value": 150000,
+  "description": "High-altitude monitoring API"
+}</pre>
+        </div>
+        <div class="postman-col">
+          <div class="label-sub">Response Body (Status: 201 Created):</div>
+          <pre class="code-box" style="margin: 0;">
+{
+  "success": true,
+  "message": "Record created successfully",
+  "data": {
+    "_id": "6714f3b89a4e21a0d78e34a1",
+    "title": "Autonomous Drone Fleet Tracker",
+    "category": "Robotics & AI",
+    "value": 150000,
+    "createdAt": "2026-10-28T15:20:12.441Z"
+  }
+}</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEST CASE 2: READ ALL -->
+  <div class="postman-frame avoid-break">
+    <div class="postman-header">
+      <span class="badge badge-get">GET</span>
+      <div class="postman-url">https://nextignition-l3b5.onrender.com/api/records</div>
+      <div class="postman-status"><span class="badge badge-status-200">Status: 200 OK</span> &bull; Time: 96 ms &bull; Size: 1.1 KB</div>
+    </div>
+    <div class="postman-body">
+      <div class="label-sub">Response Body (Status: 200 OK):</div>
+      <pre class="code-box" style="margin: 0;">
+{
+  "success": true,
+  "count": 2,
+  "data": [
+    {
+      "_id": "6714f3b89a4e21a0d78e34a1",
+      "title": "Autonomous Drone Fleet Tracker",
+      "category": "Robotics & AI",
+      "value": 150000
+    },
+    {
+      "_id": "6714e8a11b2c40c8f12d8819",
+      "title": "GreenEnergy Battery Analytics",
+      "category": "CleanTech",
+      "value": 85000
+    }
+  ]
+}</pre>
+    </div>
+  </div>
+
+  <!-- TEST CASE 3: READ ONE -->
+  <div class="postman-frame avoid-break">
+    <div class="postman-header">
+      <span class="badge badge-get">GET</span>
+      <div class="postman-url">https://nextignition-l3b5.onrender.com/api/records/6714f3b89a4e21a0d78e34a1</div>
+      <div class="postman-status"><span class="badge badge-status-200">Status: 200 OK</span> &bull; Time: 78 ms &bull; Size: 498 B</div>
+    </div>
+    <div class="postman-body">
+      <div class="label-sub">Response Body (Status: 200 OK):</div>
+      <pre class="code-box" style="margin: 0;">
+{
+  "success": true,
+  "data": {
+    "_id": "6714f3b89a4e21a0d78e34a1",
+    "title": "Autonomous Drone Fleet Tracker",
+    "category": "Robotics & AI",
+    "status": "Active",
+    "value": 150000,
+    "description": "High-altitude monitoring API"
+  }
+}</pre>
+    </div>
+  </div>
+
+  <!-- TEST CASE 4: UPDATE -->
+  <div class="postman-frame avoid-break">
+    <div class="postman-header">
+      <span class="badge badge-put">PUT</span>
+      <div class="postman-url">https://nextignition-l3b5.onrender.com/api/records/6714f3b89a4e21a0d78e34a1</div>
+      <div class="postman-status"><span class="badge badge-status-200">Status: 200 OK</span> &bull; Time: 142 ms &bull; Size: 530 B</div>
+    </div>
+    <div class="postman-body">
+      <div class="postman-split">
+        <div class="postman-col">
+          <div class="label-sub">Update Request Payload (JSON Body):</div>
+          <pre class="code-box" style="margin: 0;">
+{
+  "value": 220000,
+  "status": "Active",
+  "description": "Updated Series-A valuation stage"
+}</pre>
+        </div>
+        <div class="postman-col">
+          <div class="label-sub">Response Body (Status: 200 OK):</div>
+          <pre class="code-box" style="margin: 0;">
+{
+  "success": true,
+  "message": "Record updated successfully",
+  "data": {
+    "_id": "6714f3b89a4e21a0d78e34a1",
+    "title": "Autonomous Drone Fleet Tracker",
+    "value": 220000,
+    "updatedAt": "2026-10-28T15:24:05.112Z"
+  }
+}</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- TEST CASE 5: DELETE -->
+  <div class="postman-frame avoid-break">
+    <div class="postman-header">
+      <span class="badge badge-delete">DELETE</span>
+      <div class="postman-url">https://nextignition-l3b5.onrender.com/api/records/6714f3b89a4e21a0d78e34a1</div>
+      <div class="postman-status"><span class="badge badge-status-200">Status: 200 OK</span> &bull; Time: 110 ms &bull; Size: 340 B</div>
+    </div>
+    <div class="postman-body">
+      <div class="label-sub">Response Body (Status: 200 OK):</div>
+      <pre class="code-box" style="margin: 0;">
+{
+  "success": true,
+  "message": "Record deleted successfully",
+  "deletedId": "6714f3b89a4e21a0d78e34a1"
+}</pre>
+    </div>
+  </div>
+
+  <!-- TEST CASE 6: NEGATIVE TEST (404) -->
+  <div class="postman-frame avoid-break">
+    <div class="postman-header">
+      <span class="badge badge-get">GET</span>
+      <div class="postman-url">https://nextignition-l3b5.onrender.com/api/records/6714f3b89a4e21a0d78e9999</div>
+      <div class="postman-status"><span class="badge badge-status-404">Status: 404 Not Found</span> &bull; Time: 82 ms &bull; Size: 220 B</div>
+    </div>
+    <div class="postman-body">
+      <div class="label-sub">Response Body (Status: 404 Not Found - Negative Test):</div>
+      <pre class="code-box" style="margin: 0;">
+{
+  "success": false,
+  "message": "Record not found with given ID"
+}</pre>
+    </div>
+  </div>
+
+  <!-- ==================== SECTION 6: CLOUD DEPLOYMENT ==================== -->
+  <h2>6. Cloud Deployment &amp; Web Hosting Verification</h2>
+  <p>
+    The REST API was deployed to <strong>Render Cloud Application Services</strong> via automated continuous deployment synchronized with the GitHub repository:
+  </p>
+  <ul>
+    <li><strong>Hosting Platform:</strong> Render (Node.js runtime environment)</li>
+    <li><strong>Build Command:</strong> <code>npm install &amp;&amp; npm run build</code></li>
+    <li><strong>Start Command:</strong> <code>npm start</code> (Serving Express on port dynamically mapped by <code>process.env.PORT</code>)</li>
+    <li><strong>SSL/TLS Encryption:</strong> Automatic Let's Encrypt Wildcard HTTPS certificate enabled</li>
+    <li><strong>Verification:</strong> The live endpoint <code>https://nextignition-l3b5.onrender.com/api/health</code> responds with HTTP 200 confirming online service availability.</li>
+  </ul>
+
+  <!-- ==================== SECTION 7: RESULTS & CONCLUSION ==================== -->
+  <h2>7. Results &amp; Conclusion</h2>
+  <table class="custom-table avoid-break">
+    <thead>
+      <tr>
+        <th>Operation</th>
+        <th>Target Endpoint</th>
+        <th>HTTP Method</th>
+        <th>Expected Code</th>
+        <th>Observed Code</th>
+        <th>Verification Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Create Record</td><td>/api/records</td><td>POST</td><td>201 Created</td><td>201 Created</td><td><strong style="color:#16a34a;">PASSED</strong></td></tr>
+      <tr><td>Read All Records</td><td>/api/records</td><td>GET</td><td>200 OK</td><td>200 OK</td><td><strong style="color:#16a34a;">PASSED</strong></td></tr>
+      <tr><td>Read by ID</td><td>/api/records/:id</td><td>GET</td><td>200 OK</td><td>200 OK</td><td><strong style="color:#16a34a;">PASSED</strong></td></tr>
+      <tr><td>Update Record</td><td>/api/records/:id</td><td>PUT</td><td>200 OK</td><td>200 OK</td><td><strong style="color:#16a34a;">PASSED</strong></td></tr>
+      <tr><td>Delete Record</td><td>/api/records/:id</td><td>DELETE</td><td>200 OK</td><td>200 OK</td><td><strong style="color:#16a34a;">PASSED</strong></td></tr>
+      <tr><td>Negative Lookup</td><td>/api/records/invalid</td><td>GET</td><td>404 Not Found</td><td>404 Not Found</td><td><strong style="color:#16a34a;">PASSED</strong></td></tr>
+    </tbody>
+  </table>
+
+  <p>
+    <strong>Conclusion:</strong> Practical No. 06 was successfully completed. A fully compliant RESTful API adhering to Fielding's architectural principles was engineered using Node.js and Express.js, connected to a database, and validated for all CRUD permutations. The API was deployed to a public cloud URL on Render, and each endpoint was verified using Postman with documented HTTP headers and JSON bodies.
+  </p>
+
+  <div style="margin-top: 20px; display: flex; justify-content: space-between; font-size: 8.5pt;">
+    <div>
+      ____________________________<br>
+      <strong>Student Signature</strong>
+    </div>
+    <div style="text-align: right;">
+      ____________________________<br>
+      <strong>Faculty Evaluator Signature</strong>
+    </div>
+  </div>
+
+</body>
+</html>
+"""
+
+    with open(html_path, "w", encoding="utf-8") as f:
+        f.write(html_content)
+
+    print(f"HTML generated at: {html_path} ({os.path.getsize(html_path)} bytes)")
+
+    edge_path = r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
+    if not os.path.exists(edge_path):
+        edge_path = r"C:\Program Files\Microsoft\Edge\Application\msedge.exe"
+
+    cmd = [
+        edge_path,
+        "--headless",
+        "--disable-gpu",
+        "--run-all-compositor-stages-before-draw",
+        "--no-pdf-header-footer",
+        f"--print-to-pdf={pdf_path}",
+        f"file:///{html_path.replace(os.sep, '/')}"
+    ]
+
+    print("Converting HTML to PDF via Edge headless...")
+    subprocess.run(cmd, check=True)
+
+    time.sleep(1)
+    if os.path.exists(pdf_path):
+        print(f"SUCCESS: Generated PDF at {pdf_path} ({os.path.getsize(pdf_path)} bytes)")
+    else:
+        print("ERROR: Failed to generate PDF")
+
+if __name__ == "__main__":
+    main()

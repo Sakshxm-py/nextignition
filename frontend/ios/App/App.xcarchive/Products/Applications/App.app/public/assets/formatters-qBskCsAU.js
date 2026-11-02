@@ -1,0 +1,1 @@
+const n=r=>{if(r==null||r==="")return"";const e=String(r),t=e.replace(/,/g,"");return isNaN(Number(t))?e:new Intl.NumberFormat("en-IN").format(Number(t))},a=r=>r.replace(/,/g,""),s=r=>{const e=r.replace(/,/g,"");return e===""||/^\d+$/.test(e)};export{n as f,s as i,a as p};

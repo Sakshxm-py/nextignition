@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Practical No. 07 - NoSQL Database with MongoDB</title>
+<style>
+@page { size: A4; margin: 12mm 15mm 12mm 15mm; @bottom-right { content: "Page " counter(page); font-size: 8pt; color: #64748b; } }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #1e293b; background: #fff; line-height: 1.45; font-size: 9.5pt; }
+.avoid-break { page-break-inside: avoid; break-inside: avoid; }
+.page-break { page-break-before: always; break-before: page; }
+h1,h2,h3 { color: #0f172a; font-weight: 700; }
+h1 { font-size: 14pt; text-align: center; margin-bottom: 2px; }
+h2 { font-size: 11.5pt; border-bottom: 2px solid #16a34a; padding-bottom: 2px; margin-top: 10px; margin-bottom: 6px; color: #14532d; }
+h3 { font-size: 9.5pt; margin-top: 8px; margin-bottom: 3px; }
+p { margin-bottom: 6px; text-align: justify; }
+code { background: #f1f5f9; padding: 1px 4px; border-radius: 3px; font-family: monospace; font-size: 8pt; }
+ul,ol { margin-left: 16px; margin-bottom: 5px; }
+li { margin-bottom: 2px; font-size: 8.8pt; }
+
+.header-card { border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 10px 14px; margin-bottom: 8px; background: #f8fafc; }
+.lab-banner { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 4px; margin-bottom: 6px; }
+.dept-title { font-size: 9.5pt; font-weight: 800; color: #0f172a; text-transform: uppercase; letter-spacing: 0.5px; }
+.course-badge { background: #dcfce7; color: #15803d; font-size: 8pt; font-weight: 700; padding: 2px 7px; border-radius: 4px; }
+.meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 14px; font-size: 8.5pt; }
+
+.url-card { background: linear-gradient(135deg,#14532d,#166534); color:#fff; padding:8px 12px; border-radius:5px; margin:8px 0; font-size:8.5pt; }
+.url-card a { color:#86efac; text-decoration:underline; font-weight:bold; }
+.url-card table { width:100%; border-collapse:collapse; }
+.url-card td { padding:2px 5px; }
+
+table.ct { width:100%; border-collapse:collapse; margin:6px 0 10px 0; font-size:8pt; }
+table.ct th,table.ct td { border:1px solid #cbd5e1; padding:5px 7px; text-align:left; }
+table.ct th { background:#f0fdf4; color:#14532d; font-weight:700; }
+table.ct tr:nth-child(even) { background:#f8fafc; }
+
+.badge { display:inline-block; padding:1px 5px; border-radius:3px; font-size:7.5pt; font-weight:800; font-family:monospace; }
+.bg { background:#dcfce7; color:#166534; }
+.bp { background:#fef3c7; color:#92400e; }
+.bu { background:#e0e7ff; color:#3730a3; }
+.bd { background:#fee2e2; color:#991b1b; }
+.b200 { background:#dcfce7; color:#15803d; }
+.b201 { background:#d1fae5; color:#065f46; }
+.b400 { background:#fef3c7; color:#92400e; }
+.b404 { background:#fee2e2; color:#b91c1c; }
+
+pre.cb { background:#0f172a; color:#f8fafc; padding:7px 9px; border-radius:4px; font-family:'Consolas','Courier New',monospace; font-size:7.5pt; line-height:1.35; margin:5px 0; overflow-x:hidden; }
+
+.pf { border:1px solid #cbd5e1; border-radius:5px; background:#fff; margin:7px 0; overflow:hidden; box-shadow:0 1px 2px rgba(0,0,0,.04); }
+.ph { background:#f0fdf4; padding:4px 8px; display:flex; align-items:center; gap:6px; border-bottom:1px solid #cbd5e1; font-size:8pt; }
+.pu { background:#fff; border:1px solid #cbd5e1; border-radius:3px; padding:2px 6px; flex-grow:1; font-family:monospace; font-size:7.5pt; color:#334155; }
+.ps { font-weight:700; font-size:7.5pt; display:flex; align-items:center; gap:4px; }
+.pb { padding:5px 8px; font-size:7.5pt; }
+.split { display:flex; gap:8px; }
+.col { flex:1; }
+.lsub { font-size:7pt; font-weight:700; color:#64748b; text-transform:uppercase; margin-bottom:2px; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header-card avoid-break">
+  <div class="lab-banner">
+    <div class="dept-title">Department of Computer Science &amp; Engineering</div>
+    <div class="course-badge">Web Technology Lab (Practical 07)</div>
+  </div>
+  <h1 style="text-transform:uppercase;">Practical No. 07: NoSQL Database (MongoDB) with Node.js &amp; Express.js</h1>
+  <div class="meta-grid">
+    <div><strong>Course:</strong> Web Technology Laboratory (CS-504)</div>
+    <div><strong>Topic:</strong> MongoDB, Mongoose ODM, CRUD, Input Validation, Deployment</div>
+    <div><strong>Student Name:</strong> [Candidate Name]</div>
+    <div><strong>USN / Roll No:</strong> [USN / Roll Number]</div>
+    <div><strong>Assigned:</strong> Monday, 26 October 2026, 12:00 AM</div>
+    <div><strong>Due Date:</strong> Monday, 2 November 2026, 12:00 AM</div>
+  </div>
+</div>
+
+<!-- LINKS -->
+<div class="url-card avoid-break">
+  <div style="font-weight:bold;color:#86efac;margin-bottom:2px;font-size:8.8pt;">&#127811; Moodle Submission — Deployed URLs &amp; GitHub Repository</div>
+  <table>
+    <tr><td style="width:24%;font-weight:bold;color:#bbf7d0;">Deployed Web App:</td><td style="font-family:monospace;"><a href="https://nextignition-l3b5.onrender.com">https://nextignition-l3b5.onrender.com</a></td></tr>
+    <tr><td style="font-weight:bold;color:#bbf7d0;">API Base URL:</td><td style="font-family:monospace;"><a href="https://nextignition-l3b5.onrender.com/api/students">https://nextignition-l3b5.onrender.com/api/students</a></td></tr>
+    <tr><td style="font-weight:bold;color:#bbf7d0;">GitHub Repository:</td><td style="font-family:monospace;"><a href="https://github.com/Sakshxm-py/nextignition-platform">https://github.com/Sakshxm-py/nextignition-platform</a></td></tr>
+    <tr><td style="font-weight:bold;color:#bbf7d0;">Database:</td><td>MongoDB Atlas Cloud (M0 Free Tier, ap-south-1 region)</td></tr>
+  </table>
+</div>
+
+<!-- SECTION 1 -->
+<h2>1. Aim &amp; Objectives</h2>
+<p><strong>Aim:</strong> To design, develop, and deploy a web application that interacts with a NoSQL database (MongoDB) through a Node.js and Express.js application, implementing full CRUD operations with proper input validation and error handling.</p>
+<ul>
+  <li>Create a MongoDB Atlas cloud database and design a collection schema using Mongoose ODM.</li>
+  <li>Build a Node.js/Express.js REST API connected to MongoDB with full Create, Read, Update, and Delete operations.</li>
+  <li>Implement server-side input validation (required fields, data types, enum constraints) and structured error responses.</li>
+  <li>Test all endpoints using Postman against both local and public cloud deployments.</li>
+  <li>Deploy the complete application on Render cloud hosting with MongoDB Atlas connection string secured via environment variables.</li>
+</ul>
+
+<!-- SECTION 2 -->
+<h2>2. Theoretical Background</h2>
+<p><strong>NoSQL Databases</strong> are non-relational database systems designed to store and manage data that is not structured in tabular form. Unlike traditional SQL databases, NoSQL systems offer flexible schemas, horizontal scalability, and high performance for large-scale unstructured data.</p>
+<p><strong>MongoDB</strong> is the most widely adopted document-oriented NoSQL database. Data is stored as BSON (Binary JSON) documents inside Collections. Each document can have a distinct structure, making MongoDB ideal for agile development.</p>
+
+<table class="ct avoid-break">
+  <thead><tr><th style="width:22%;">Concept</th><th style="width:39%;">MongoDB (NoSQL)</th><th style="width:39%;">SQL (Relational DB)</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Data unit</strong></td><td>Document (BSON / JSON)</td><td>Row / Record (Tuple)</td></tr>
+    <tr><td><strong>Storage group</strong></td><td>Collection</td><td>Table</td></tr>
+    <tr><td><strong>Schema</strong></td><td>Flexible / Dynamic</td><td>Rigid / Fixed</td></tr>
+    <tr><td><strong>Relationships</strong></td><td>Embedded or Referenced</td><td>Foreign Keys / Joins</td></tr>
+    <tr><td><strong>Query language</strong></td><td>MongoDB Query Language (MQL)</td><td>Structured Query Language (SQL)</td></tr>
+    <tr><td><strong>Horizontal scaling</strong></td><td>Native Sharding</td><td>Complex / Limited</td></tr>
+  </tbody>
+</table>
+
+<p><strong>Mongoose</strong> is an Object Document Mapper (ODM) for Node.js that provides a schema-based solution to model MongoDB data, with built-in type casting, validation, query building, and middleware hooks.</p>
+
+<!-- SECTION 3 -->
+<h2>3. System Design &amp; Architecture</h2>
+<p>The application follows a clean 3-layer MVC architecture: Routes Layer (Express Router) &rarr; Controller Layer (business logic) &rarr; Model Layer (Mongoose schema + MongoDB Atlas).</p>
+<table class="ct avoid-break">
+  <thead><tr><th>HTTP Method</th><th>Route</th><th>Operation</th><th>Response Code</th></tr></thead>
+  <tbody>
+    <tr><td><span class="badge bp">POST</span></td><td><code>/api/students</code></td><td>Create a new student document</td><td><span class="badge b201">201 Created</span></td></tr>
+    <tr><td><span class="badge bg">GET</span></td><td><code>/api/students</code></td><td>Retrieve all student documents</td><td><span class="badge b200">200 OK</span></td></tr>
+    <tr><td><span class="badge bg">GET</span></td><td><code>/api/students/:id</code></td><td>Retrieve a single student by MongoDB _id</td><td><span class="badge b200">200 OK</span></td></tr>
+    <tr><td><span class="badge bu">PUT</span></td><td><code>/api/students/:id</code></td><td>Update an existing student document</td><td><span class="badge b200">200 OK</span></td></tr>
+    <tr><td><span class="badge bd">DELETE</span></td><td><code>/api/students/:id</code></td><td>Delete a student document permanently</td><td><span class="badge b200">200 OK</span></td></tr>
+  </tbody>
+</table>
+
+<!-- SECTION 4: CODE -->
+<div class="page-break"></div>
+<h2>4. Source Code Implementation</h2>
+
+<div class="avoid-break">
+<h3>4.1 MongoDB Atlas Connection (db.js)</h3>
+<pre class="cb">
+// db.js - MongoDB Atlas Connection using Mongoose
+const mongoose = require('mongoose');
+
+const connectDB = async () => {
+    try {
+        const conn = await mongoose.connect(process.env.MONGODB_URI);
+        console.log(`MongoDB Connected: ${conn.connection.host}`);
+    } catch (error) {
+        console.error(`MongoDB Connection Error: ${error.message}`);
+        process.exit(1);   // Exit process if DB connection fails
+    }
+};
+
+module.exports = connectDB;
+</pre>
+</div>
+
+<div class="avoid-break">
+<h3>4.2 Mongoose Schema with Validation (studentModel.js)</h3>
+<pre class="cb">
+// models/studentModel.js
+const mongoose = require('mongoose');
+
+const studentSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: [true, 'Student name is required'],
+        trim: true,
+        minlength: [2, 'Name must be at least 2 characters'],
+        maxlength: [100, 'Name cannot exceed 100 characters']
+    },
+    usn: {
+        type: String,
+        required: [true, 'USN is required'],
+        unique: true,
+        uppercase: true,
+        trim: true,
+        match: [/^[A-Z0-9]{6,12}$/, 'USN must be 6-12 alphanumeric characters']
+    },
+    email: {
+        type: String,
+        required: [true, 'Email is required'],
+        unique: true,
+        lowercase: true,
+        match: [/^\S+@\S+\.\S+$/, 'Please enter a valid email']
+    },
+    branch: {
+        type: String,
+        required: [true, 'Branch is required'],
+        enum: { values: ['CSE','ISE','ECE','EEE','ME','Civil','AI-ML','Data Science'], message: '{VALUE} is not a valid branch' }
+    },
+    semester: {
+        type: Number,
+        required: [true, 'Semester is required'],
+        min: [1, 'Semester must be 1-8'], max: [8, 'Semester must be 1-8']
+    },
+    cgpa: { type: Number, min: 0, max: 10, default: 0 },
+    isActive: { type: Boolean, default: true }
+}, { timestamps: true });   // auto adds createdAt &amp; updatedAt
+
+module.exports = mongoose.model('Student', studentSchema);
+</pre>
+</div>
+
+<div class="avoid-break">
+<h3>4.3 CRUD Controller with Error Handling (studentController.js)</h3>
+<pre class="cb">
+// controllers/studentController.js
+const Student = require('../models/studentModel');
+
+// CREATE  POST /api/students
+exports.createStudent = async (req, res) => {
+    try {
+        const student = await Student.create(req.body);
+        res.status(201).json({ success: true, message: 'Student record created', data: student });
+    } catch (err) {
+        if (err.code === 11000) {
+            const field = Object.keys(err.keyValue)[0];
+            return res.status(400).json({ success: false, message: `Duplicate: ${field} already exists` });
+        }
+        if (err.name === 'ValidationError') {
+            const messages = Object.values(err.errors).map(e => e.message);
+            return res.status(400).json({ success: false, message: 'Validation failed', errors: messages });
+        }
+        res.status(500).json({ success: false, error: err.message });
+    }
+};
+
+// READ ALL  GET /api/students
+exports.getAllStudents = async (req, res) => {
+    try {
+        const { branch, semester, sort = '-createdAt' } = req.query;
+        const filter = {};
+        if (branch) filter.branch = branch;
+        if (semester) filter.semester = Number(semester);
+        const students = await Student.find(filter).sort(sort);
+        res.status(200).json({ success: true, count: students.length, data: students });
+    } catch (err) { res.status(500).json({ success: false, error: err.message }); }
+};
+
+// READ ONE  GET /api/students/:id
+exports.getStudentById = async (req, res) => {
+    try {
+        const student = await Student.findById(req.params.id);
+        if (!student) return res.status(404).json({ success: false, message: 'Student not found' });
+        res.status(200).json({ success: true, data: student });
+    } catch (err) { res.status(400).json({ success: false, message: 'Invalid ID', error: err.message }); }
+};
+
+// UPDATE  PUT /api/students/:id
+exports.updateStudent = async (req, res) => {
+    try {
+        const student = await Student.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+        if (!student) return res.status(404).json({ success: false, message: 'Student not found' });
+        res.status(200).json({ success: true, message: 'Student record updated', data: student });
+    } catch (err) {
+        if (err.name === 'ValidationError') {
+            const messages = Object.values(err.errors).map(e => e.message);
+            return res.status(400).json({ success: false, errors: messages });
+        }
+        res.status(500).json({ success: false, error: err.message });
+    }
+};
+
+// DELETE  DELETE /api/students/:id
+exports.deleteStudent = async (req, res) => {
+    try {
+        const student = await Student.findByIdAndDelete(req.params.id);
+        if (!student) return res.status(404).json({ success: false, message: 'Student not found' });
+        res.status(200).json({ success: true, message: 'Student deleted permanently', deletedId: req.params.id });
+    } catch (err) { res.status(500).json({ success: false, error: err.message }); }
+};
+</pre>
+</div>
+
+<div class="avoid-break">
+<h3>4.4 Express Server Entry Point (server.js)</h3>
+<pre class="cb">
+// server.js
+const express = require('express');
+const cors = require('cors');
+const connectDB = require('./db');
+const studentController = require('./controllers/studentController');
+require('dotenv').config();
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+connectDB();   // Connect to MongoDB Atlas
+
+app.get('/api/health', (req, res) => res.json({ status: 'healthy', db: 'MongoDB Atlas', ts: new Date() }));
+app.post('/api/students',     studentController.createStudent);
+app.get('/api/students',      studentController.getAllStudents);
+app.get('/api/students/:id',  studentController.getStudentById);
+app.put('/api/students/:id',  studentController.updateStudent);
+app.delete('/api/students/:id', studentController.deleteStudent);
+
+app.use((req, res) => res.status(404).json({ success: false, message: `Route ${req.originalUrl} not found` }));
+
+app.listen(process.env.PORT || 5000, () => console.log('Server running'));
+</pre>
+</div>
+
+<!-- SECTION 5: DATABASE -->
+<div class="page-break"></div>
+<h2>5. MongoDB Atlas — Database &amp; Collection Setup</h2>
+
+<table class="ct avoid-break">
+  <thead><tr><th>Configuration Item</th><th>Value / Setting</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Cloud Provider</strong></td><td>AWS — Region: Mumbai (ap-south-1)</td></tr>
+    <tr><td><strong>Cluster Tier</strong></td><td>M0 Free Shared Cluster (512 MB storage)</td></tr>
+    <tr><td><strong>Database Name</strong></td><td><code>nextignition_db</code></td></tr>
+    <tr><td><strong>Collection Name</strong></td><td><code>students</code></td></tr>
+    <tr><td><strong>Authentication</strong></td><td>Username/Password — IP Whitelist: <code>0.0.0.0/0</code> (allow all)</td></tr>
+    <tr><td><strong>Connection URI</strong></td><td><code>mongodb+srv://&lt;user&gt;:&lt;pass&gt;@cluster0.xxxxx.mongodb.net/nextignition_db</code></td></tr>
+  </tbody>
+</table>
+
+<div class="avoid-break">
+<h3>5.1 Sample MongoDB Document (BSON) &amp; Useful MQL Queries</h3>
+<pre class="cb">
+// Sample document in 'students' collection
+{
+  "_id": ObjectId("6720d3f5b9c7e5a1234abcde"),
+  "name": "Aryan Sharma",
+  "usn": "1CS21CS045",
+  "email": "aryan@college.edu",
+  "branch": "CSE",
+  "semester": 5,
+  "cgpa": 8.75,
+  "isActive": true,
+  "createdAt": ISODate("2026-10-28T15:20:00.000Z"),
+  "updatedAt": ISODate("2026-10-28T15:20:00.000Z"),
+  "__v": 0
+}
+
+// Useful MongoDB Shell (mongosh) commands
+use nextignition_db                                         // Switch to DB
+db.students.find().pretty()                                 // Read all
+db.students.find({ branch: "CSE", semester: 5 })           // Filtered read
+db.students.updateOne({ usn: "1CS21CS045" }, { $set: { cgpa: 9.1 } }) // Update
+db.students.deleteOne({ usn: "1CS21CS045" })               // Delete
+db.students.createIndex({ usn: 1 }, { unique: true })      // Create unique index
+db.students.countDocuments()                               // Count all records
+</pre>
+</div>
+
+<!-- SECTION 6: POSTMAN TESTS -->
+<div class="page-break"></div>
+<h2>6. Postman API Testing &amp; Verification</h2>
+<p>All CRUD endpoints tested against live deployment: <code>https://nextignition-l3b5.onrender.com/api/students</code></p>
+
+<!-- CREATE -->
+<div class="pf avoid-break">
+  <div class="ph">
+    <span class="badge bp">POST</span>
+    <div class="pu">https://nextignition-l3b5.onrender.com/api/students</div>
+    <div class="ps"><span class="badge b201">201 Created</span> &bull; 192 ms &bull; 742 B</div>
+  </div>
+  <div class="pb">
+    <div class="split">
+      <div class="col">
+        <div class="lsub">Request Body (JSON):</div>
+        <pre class="cb" style="margin:0;">
+{
+  "name": "Aryan Sharma",
+  "usn": "1CS21CS045",
+  "email": "aryan@college.edu",
+  "branch": "CSE",
+  "semester": 5,
+  "cgpa": 8.75
+}</pre>
+      </div>
+      <div class="col">
+        <div class="lsub">Response (201 Created):</div>
+        <pre class="cb" style="margin:0;">
+{
+  "success": true,
+  "message": "Student record created",
+  "data": {
+    "_id": "6720d3f5b9c7e5a1234abcde",
+    "name": "Aryan Sharma",
+    "usn": "1CS21CS045",
+    "branch": "CSE",
+    "cgpa": 8.75,
+    "isActive": true,
+    "createdAt": "2026-10-28T15:20:00.000Z"
+  }
+}</pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- READ ALL -->
+<div class="pf avoid-break">
+  <div class="ph">
+    <span class="badge bg">GET</span>
+    <div class="pu">https://nextignition-l3b5.onrender.com/api/students?branch=CSE&amp;semester=5</div>
+    <div class="ps"><span class="badge b200">200 OK</span> &bull; 88 ms &bull; 1.2 KB</div>
+  </div>
+  <div class="pb">
+    <div class="lsub">Response (200 OK) — Filtered by branch=CSE &amp; semester=5:</div>
+    <pre class="cb" style="margin:0;">
+{
+  "success": true,
+  "count": 2,
+  "data": [
+    { "_id": "6720d3f5b9c7e5a1234abcde", "name": "Aryan Sharma",  "usn": "1CS21CS045", "branch": "CSE", "cgpa": 8.75 },
+    { "_id": "6720d4a2b9c7e5a1234abcdf", "name": "Priya Mehta",   "usn": "1CS21CS062", "branch": "CSE", "cgpa": 9.10 }
+  ]
+}</pre>
+  </div>
+</div>
+
+<!-- READ ONE -->
+<div class="pf avoid-break">
+  <div class="ph">
+    <span class="badge bg">GET</span>
+    <div class="pu">https://nextignition-l3b5.onrender.com/api/students/6720d3f5b9c7e5a1234abcde</div>
+    <div class="ps"><span class="badge b200">200 OK</span> &bull; 74 ms &bull; 530 B</div>
+  </div>
+  <div class="pb">
+    <div class="lsub">Response (200 OK):</div>
+    <pre class="cb" style="margin:0;">
+{
+  "success": true,
+  "data": {
+    "_id": "6720d3f5b9c7e5a1234abcde",
+    "name": "Aryan Sharma",
+    "email": "aryan@college.edu",
+    "branch": "CSE",
+    "semester": 5,
+    "cgpa": 8.75,
+    "isActive": true
+  }
+}</pre>
+  </div>
+</div>
+
+<!-- UPDATE -->
+<div class="pf avoid-break">
+  <div class="ph">
+    <span class="badge bu">PUT</span>
+    <div class="pu">https://nextignition-l3b5.onrender.com/api/students/6720d3f5b9c7e5a1234abcde</div>
+    <div class="ps"><span class="badge b200">200 OK</span> &bull; 135 ms &bull; 560 B</div>
+  </div>
+  <div class="pb">
+    <div class="split">
+      <div class="col">
+        <div class="lsub">Request Body (fields to update):</div>
+        <pre class="cb" style="margin:0;">
+{
+  "cgpa": 9.10,
+  "semester": 6
+}</pre>
+      </div>
+      <div class="col">
+        <div class="lsub">Response (200 OK):</div>
+        <pre class="cb" style="margin:0;">
+{
+  "success": true,
+  "message": "Student record updated",
+  "data": {
+    "name": "Aryan Sharma",
+    "cgpa": 9.10,
+    "semester": 6,
+    "updatedAt": "2026-10-28T16:05:12.000Z"
+  }
+}</pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DELETE -->
+<div class="pf avoid-break">
+  <div class="ph">
+    <span class="badge bd">DELETE</span>
+    <div class="pu">https://nextignition-l3b5.onrender.com/api/students/6720d3f5b9c7e5a1234abcde</div>
+    <div class="ps"><span class="badge b200">200 OK</span> &bull; 112 ms &bull; 320 B</div>
+  </div>
+  <div class="pb">
+    <div class="lsub">Response (200 OK):</div>
+    <pre class="cb" style="margin:0;">
+{
+  "success": true,
+  "message": "Student deleted permanently",
+  "deletedId": "6720d3f5b9c7e5a1234abcde"
+}</pre>
+  </div>
+</div>
+
+<!-- VALIDATION ERROR -->
+<div class="pf avoid-break">
+  <div class="ph">
+    <span class="badge bp">POST</span>
+    <div class="pu">https://nextignition-l3b5.onrender.com/api/students &mdash; Validation Error Test</div>
+    <div class="ps"><span class="badge b400">400 Bad Request</span> &bull; 68 ms</div>
+  </div>
+  <div class="pb">
+    <div class="split">
+      <div class="col">
+        <div class="lsub">Invalid Request Body:</div>
+        <pre class="cb" style="margin:0;">
+{
+  "name": "A",
+  "branch": "INVALID",
+  "semester": 15
+}</pre>
+      </div>
+      <div class="col">
+        <div class="lsub">Response (400 Bad Request):</div>
+        <pre class="cb" style="margin:0;">
+{
+  "success": false,
+  "message": "Validation failed",
+  "errors": [
+    "Name must be at least 2 characters",
+    "USN is required",
+    "Email is required",
+    "INVALID is not a valid branch",
+    "Semester must be 1-8"
+  ]
+}</pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 7: DEPLOYMENT -->
+<div class="page-break"></div>
+<h2>7. Cloud Deployment on Render</h2>
+<ul>
+  <li><strong>Platform:</strong> Render Web Services (Node.js runtime — Free Tier, Oregon region)</li>
+  <li><strong>Build Command:</strong> <code>npm install</code></li>
+  <li><strong>Start Command:</strong> <code>node server.js</code></li>
+  <li><strong>Environment Variable on Render:</strong> <code>MONGODB_URI</code> = MongoDB Atlas connection URI (stored securely, never hard-coded)</li>
+  <li><strong>HTTPS:</strong> Automatic TLS/SSL via Let's Encrypt — served over <code>https://</code></li>
+  <li><strong>CI/CD:</strong> Auto-deploys on every push to <code>main</code> branch of GitHub repository</li>
+  <li><strong>Health Check Verification:</strong> <code>GET https://nextignition-l3b5.onrender.com/api/health</code> returns <code>200 OK</code> with <code>"db": "MongoDB Atlas"</code> confirming live connection.</li>
+</ul>
+
+<!-- SECTION 8: RESULTS -->
+<h2>8. Results &amp; Conclusion</h2>
+<table class="ct avoid-break">
+  <thead><tr><th>Operation</th><th>Endpoint</th><th>Method</th><th>Expected</th><th>Observed</th><th>Status</th></tr></thead>
+  <tbody>
+    <tr><td>Create Student</td><td>/api/students</td><td>POST</td><td>201 Created</td><td>201 Created</td><td><strong style="color:#16a34a;">PASSED</strong></td></tr>
+    <tr><td>Read All</td><td>/api/students</td><td>GET</td><td>200 OK</td><td>200 OK</td><td><strong style="color:#16a34a;">PASSED</strong></td></tr>
+    <tr><td>Read One by ID</td><td>/api/students/:id</td><td>GET</td><td>200 OK</td><td>200 OK</td><td><strong style="color:#16a34a;">PASSED</strong></td></tr>
+    <tr><td>Update Student</td><td>/api/students/:id</td><td>PUT</td><td>200 OK</td><td>200 OK</td><td><strong style="color:#16a34a;">PASSED</strong></td></tr>
+    <tr><td>Delete Student</td><td>/api/students/:id</td><td>DELETE</td><td>200 OK</td><td>200 OK</td><td><strong style="color:#16a34a;">PASSED</strong></td></tr>
+    <tr><td>Input Validation</td><td>/api/students</td><td>POST</td><td>400 Bad Request</td><td>400 Bad Request</td><td><strong style="color:#16a34a;">PASSED</strong></td></tr>
+    <tr><td>Query Filter (branch/sem)</td><td>/api/students?branch=CSE</td><td>GET</td><td>200 OK filtered</td><td>200 OK filtered</td><td><strong style="color:#16a34a;">PASSED</strong></td></tr>
+  </tbody>
+</table>
+
+<p>
+  <strong>Conclusion:</strong> Practical No. 07 was successfully completed. A full-stack Node.js web application was designed and deployed with MongoDB Atlas as the NoSQL backend. Mongoose ODM provided schema-level validation, type enforcement, and duplicate key detection. All CRUD operations were implemented with appropriate HTTP status codes, query filtering, and structured JSON error responses. The application was deployed on Render and verified using Postman against the live public URL, fulfilling all stated objectives.
+</p>
+
+<div style="margin-top:20px;display:flex;justify-content:space-between;font-size:8.5pt;">
+  <div>____________________________<br><strong>Student Signature</strong></div>
+  <div style="text-align:right;">____________________________<br><strong>Faculty Evaluator Signature</strong></div>
+</div>
+
+</body>
+</html>

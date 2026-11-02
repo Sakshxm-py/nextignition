@@ -1,0 +1,27 @@
+{
+  "appId": "com.nextignition.app",
+  "appName": "NextIgnition",
+  "webDir": "build",
+  "backgroundColor": "#ffffff",
+  "server": {
+    "androidScheme": "https",
+    "hostname": "nextignition.com"
+  },
+  "plugins": {
+    "GoogleAuth": {
+      "scopes": ["profile", "email"],
+      "serverClientId": "236345953761-fiqum6k0vbauebhiinr4dvci0c37jd4o.apps.googleusercontent.com",
+      "forceCodeForRefreshToken": true
+    },
+    "GoogleSignIn": {
+      "scopes": ["profile", "email"],
+      "clientId": "236345953761-fiqum6k0vbauebhiinr4dvci0c37jd4o.apps.googleusercontent.com"
+    },
+    "SignInWithApple": {},
+    "StatusBar": {
+      "overlaysWebView": false,
+      "style": "LIGHT",
+      "backgroundColor": "#ffffff"
+    }
+  }
+}

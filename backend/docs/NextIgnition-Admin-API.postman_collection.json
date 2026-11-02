@@ -1,0 +1,151 @@
+{
+  "info": {
+    "name": "NextIgnition Admin API (V1)",
+    "description": "Admin panel 2-level RBAC API. Set {{baseUrl}} and run 'Auth > Login' first — it stores {{adminToken}} and {{adminRefreshToken}} automatically.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5000/api" },
+    { "key": "adminToken", "value": "" },
+    { "key": "adminRefreshToken", "value": "" }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [{ "key": "token", "value": "{{adminToken}}", "type": "string" }]
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": { "exec": [
+                "const d = pm.response.json();",
+                "if (d.token) pm.collectionVariables.set('adminToken', d.token);",
+                "if (d.refreshToken) pm.collectionVariables.set('adminRefreshToken', d.refreshToken);"
+              ], "type": "text/javascript" }
+            }
+          ],
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"email\": \"admin@nextignition.io\",\n  \"password\": \"<your-password>\"\n}" },
+            "url": { "raw": "{{baseUrl}}/admin/login", "host": ["{{baseUrl}}"], "path": ["admin", "login"] }
+          }
+        },
+        {
+          "name": "Refresh token",
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"refreshToken\": \"{{adminRefreshToken}}\"\n}" },
+            "url": { "raw": "{{baseUrl}}/admin/refresh", "host": ["{{baseUrl}}"], "path": ["admin", "refresh"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Dashboard",
+      "item": [
+        { "name": "Stats", "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/admin/stats", "host": ["{{baseUrl}}"], "path": ["admin", "stats"] } } },
+        { "name": "Dashboard", "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/admin/dashboard?range=7d", "host": ["{{baseUrl}}"], "path": ["admin", "dashboard"], "query": [{ "key": "range", "value": "7d" }] } } }
+      ]
+    },
+    {
+      "name": "User Management",
+      "item": [
+        { "name": "List users", "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/admin/users?page=1&limit=20", "host": ["{{baseUrl}}"], "path": ["admin", "users"], "query": [{ "key": "page", "value": "1" }, { "key": "limit", "value": "20" }] } } },
+        { "name": "User detail", "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/admin/users/:id", "host": ["{{baseUrl}}"], "path": ["admin", "users", ":id"] } } },
+        { "name": "Edit user", "request": { "method": "PUT", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"name\": \"New Name\",\n  \"bio\": \"Updated bio\"\n}" }, "url": { "raw": "{{baseUrl}}/admin/users/:id", "host": ["{{baseUrl}}"], "path": ["admin", "users", ":id"] } } },
+        { "name": "Freeze user", "request": { "method": "POST", "url": { "raw": "{{baseUrl}}/admin/freeze/:id", "host": ["{{baseUrl}}"], "path": ["admin", "freeze", ":id"] } } },
+        { "name": "Verify user (KYC)", "request": { "method": "POST", "url": { "raw": "{{baseUrl}}/admin/verify/:id", "host": ["{{baseUrl}}"], "path": ["admin", "verify", ":id"] } } },
+        { "name": "Delete user (PRIMARY)", "request": { "method": "DELETE", "url": { "raw": "{{baseUrl}}/admin/delete/:id", "host": ["{{baseUrl}}"], "path": ["admin", "delete", ":id"] } } }
+      ]
+    },
+    {
+      "name": "Startup Management",
+      "item": [
+        { "name": "List startups", "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/admin/startups", "host": ["{{baseUrl}}"], "path": ["admin", "startups"] } } },
+        { "name": "Approve startup", "request": { "method": "POST", "url": { "raw": "{{baseUrl}}/admin/startups/:id/approve", "host": ["{{baseUrl}}"], "path": ["admin", "startups", ":id", "approve"] } } },
+        { "name": "Edit startup", "request": { "method": "PUT", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"tagline\": \"New tagline\"\n}" }, "url": { "raw": "{{baseUrl}}/admin/startups/:id", "host": ["{{baseUrl}}"], "path": ["admin", "startups", ":id"] } } },
+        { "name": "Feature startup (PRIMARY)", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"featured\": true\n}" }, "url": { "raw": "{{baseUrl}}/admin/startups/:id/feature", "host": ["{{baseUrl}}"], "path": ["admin", "startups", ":id", "feature"] } } },
+        { "name": "Delete startup (PRIMARY)", "request": { "method": "DELETE", "url": { "raw": "{{baseUrl}}/admin/startups/:id", "host": ["{{baseUrl}}"], "path": ["admin", "startups", ":id"] } } }
+      ]
+    },
+    {
+      "name": "Investor Management",
+      "item": [
+        { "name": "List investors", "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/admin/investors", "host": ["{{baseUrl}}"], "path": ["admin", "investors"] } } },
+        { "name": "Approve investor (PRIMARY)", "request": { "method": "POST", "url": { "raw": "{{baseUrl}}/admin/investors/:id/approve", "host": ["{{baseUrl}}"], "path": ["admin", "investors", ":id", "approve"] } } },
+        { "name": "Edit investor (PRIMARY)", "request": { "method": "PUT", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"firmName\": \"Acme Capital\"\n}" }, "url": { "raw": "{{baseUrl}}/admin/investors/:id", "host": ["{{baseUrl}}"], "path": ["admin", "investors", ":id"] } } }
+      ]
+    },
+    {
+      "name": "Payments & Finance (PRIMARY)",
+      "item": [
+        { "name": "Transactions", "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/admin/transactions", "host": ["{{baseUrl}}"], "path": ["admin", "transactions"] } } },
+        { "name": "Payouts overview", "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/admin/payouts", "host": ["{{baseUrl}}"], "path": ["admin", "payouts"] } } },
+        { "name": "Refund payment", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{}" }, "url": { "raw": "{{baseUrl}}/admin/payments/:id/refund", "host": ["{{baseUrl}}"], "path": ["admin", "payments", ":id", "refund"] } } }
+      ]
+    },
+    {
+      "name": "Content Moderation",
+      "item": [
+        { "name": "Reports", "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/admin/reports?status=pending", "host": ["{{baseUrl}}"], "path": ["admin", "reports"], "query": [{ "key": "status", "value": "pending" }] } } },
+        { "name": "Resolve report", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"status\": \"resolved\",\n  \"actionTaken\": \"Reviewed\"\n}" }, "url": { "raw": "{{baseUrl}}/admin/reports/:id/resolve", "host": ["{{baseUrl}}"], "path": ["admin", "reports", ":id", "resolve"] } } },
+        { "name": "List posts", "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/admin/posts", "host": ["{{baseUrl}}"], "path": ["admin", "posts"] } } },
+        { "name": "Delete post", "request": { "method": "DELETE", "url": { "raw": "{{baseUrl}}/admin/posts/:id", "host": ["{{baseUrl}}"], "path": ["admin", "posts", ":id"] } } }
+      ]
+    },
+    {
+      "name": "Events & Webinars",
+      "item": [
+        { "name": "List events", "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/admin/events", "host": ["{{baseUrl}}"], "path": ["admin", "events"] } } },
+        { "name": "Create event", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"title\": \"Fundraising 101\",\n  \"type\": \"webinar\",\n  \"startAt\": \"2026-07-01T10:00:00Z\"\n}" }, "url": { "raw": "{{baseUrl}}/admin/events", "host": ["{{baseUrl}}"], "path": ["admin", "events"] } } },
+        { "name": "Approve event", "request": { "method": "POST", "url": { "raw": "{{baseUrl}}/admin/events/:id/approve", "host": ["{{baseUrl}}"], "path": ["admin", "events", ":id", "approve"] } } },
+        { "name": "Delete event (PRIMARY)", "request": { "method": "DELETE", "url": { "raw": "{{baseUrl}}/admin/events/:id", "host": ["{{baseUrl}}"], "path": ["admin", "events", ":id"] } } }
+      ]
+    },
+    {
+      "name": "Notifications",
+      "item": [
+        { "name": "Broadcast", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"title\": \"Update\",\n  \"message\": \"Hello\",\n  \"type\": \"info\",\n  \"targetRole\": \"all\"\n}" }, "url": { "raw": "{{baseUrl}}/admin/broadcast", "host": ["{{baseUrl}}"], "path": ["admin", "broadcast"] } } },
+        { "name": "List templates (PRIMARY)", "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/admin/notification-templates", "host": ["{{baseUrl}}"], "path": ["admin", "notification-templates"] } } },
+        { "name": "Create template (PRIMARY)", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"name\": \"Maintenance\",\n  \"title\": \"Scheduled maintenance\",\n  \"body\": \"We'll be down briefly.\",\n  \"type\": \"warning\"\n}" }, "url": { "raw": "{{baseUrl}}/admin/notification-templates", "host": ["{{baseUrl}}"], "path": ["admin", "notification-templates"] } } }
+      ]
+    },
+    {
+      "name": "AI Control (PRIMARY)",
+      "item": [
+        { "name": "Metrics", "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/admin/ai/metrics", "host": ["{{baseUrl}}"], "path": ["admin", "ai", "metrics"] } } },
+        { "name": "Prompt logs", "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/admin/ai/prompt-logs", "host": ["{{baseUrl}}"], "path": ["admin", "ai", "prompt-logs"] } } }
+      ]
+    },
+    {
+      "name": "Platform Settings (PRIMARY)",
+      "item": [
+        { "name": "Get settings", "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/admin/settings", "host": ["{{baseUrl}}"], "path": ["admin", "settings"] } } },
+        { "name": "Update settings", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"platformCommissionPct\": 10\n}" }, "url": { "raw": "{{baseUrl}}/admin/settings", "host": ["{{baseUrl}}"], "path": ["admin", "settings"] } } }
+      ]
+    },
+    {
+      "name": "Admin Management (PRIMARY)",
+      "item": [
+        { "name": "List admins", "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/admin/admins", "host": ["{{baseUrl}}"], "path": ["admin", "admins"] } } },
+        { "name": "Create secondary admin", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"name\": \"Ops Admin\",\n  \"email\": \"ops@nextignition.com\",\n  \"password\": \"changeme123\",\n  \"role\": \"SECONDARY_ADMIN\"\n}" }, "url": { "raw": "{{baseUrl}}/admin/admins", "host": ["{{baseUrl}}"], "path": ["admin", "admins"] } } }
+      ]
+    },
+    {
+      "name": "Logs & Security (PRIMARY)",
+      "item": [
+        { "name": "Admin activity logs", "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/admin/activity-logs", "host": ["{{baseUrl}}"], "path": ["admin", "activity-logs"] } } },
+        { "name": "Login activity", "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/admin/login-activity", "host": ["{{baseUrl}}"], "path": ["admin", "login-activity"] } } }
+      ]
+    }
+  ]
+}

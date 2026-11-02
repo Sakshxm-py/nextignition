@@ -1,0 +1,43 @@
+services:
+  - type: web
+    name: nextignition-api
+    runtime: node
+    region: oregon
+    plan: free
+    rootDir: .
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NPM_CONFIG_PRODUCTION
+        value: "false"
+      - key: PORT
+        value: 10000
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CORS_ORIGIN
+        sync: false
+      - key: OPENROUTER_API_KEY
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: SMTP_HOST
+        sync: false
+      - key: SMTP_PORT
+        sync: false
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
+        sync: false
+      - key: SMTP_SECURE
+        sync: false
+      # RevenueCat (StoreKit IAP). Set the VALUES in the Render dashboard.
+      - key: REVENUECAT_WEBHOOK_SECRET
+        sync: false
+      - key: REVENUECAT_SECRET_KEY
+        sync: false
